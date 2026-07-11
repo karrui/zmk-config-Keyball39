@@ -1,6 +1,0 @@
-// Miryoku keymap for Keyball39
-// https://github.com/manna-harbour/miryoku_zmk
-
-#include "../miryoku/miryoku/custom_config.h"
-#include "mapping/39/keyball39.h"
-#include "../miryoku/miryoku/miryoku.dtsi"
