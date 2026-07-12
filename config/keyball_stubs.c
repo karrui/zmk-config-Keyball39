@@ -37,3 +37,18 @@ int zmk_behavior_queue_add(const struct zmk_behavior_binding_event *event,
 }
 
 #endif
+
+#if IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL) && !IS_ENABLED(CONFIG_ZMK_BLE)
+
+// Prospector's output widget shows BLE HID profile status. This is a USB-only
+// ESB dongle with BLE disabled, so those functions don't exist. Stub them: no
+// BLE profile is ever connected or open (the widget falls back to USB state).
+bool zmk_ble_profile_is_connected(uint8_t index) {
+    return false;
+}
+
+bool zmk_ble_profile_is_open(uint8_t index) {
+    return false;
+}
+
+#endif
