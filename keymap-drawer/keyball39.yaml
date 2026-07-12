@@ -154,12 +154,12 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - '&mkp MB3'
-  - '&mkp MB1'
-  - '&mkp MB2'
   - '&mkp MB2'
   - '&mkp MB1'
   - '&mkp MB3'
+  - '&mkp MB3'
+  - '&mkp MB1'
+  - '&mkp MB2'
   Nav:
   - {t: Ctl+Sft+\, s: Ctl+Sft+|}
   - {t: Meh+/, s: 'Meh+?'}
