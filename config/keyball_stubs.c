@@ -7,11 +7,14 @@
 
 // The nice!view peripheral widget calls this BLE-split-only function to show
 // the "connected to central" state. Under the ESB split transport BLE is off
-// and the symbol doesn't exist, so stub it. An ESB peripheral has no standing
-// connection to report; it is reachable whenever powered, so report connected.
+// and the symbol doesn't exist, so provide it — backed by the real ESB link
+// status from our zmk-feature-split-esb fork (derived from TX acks). Note the
+// state only refreshes when the peripheral transmits; while idle it holds the
+// last value (no heartbeat).
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT_BLE)
+extern bool zmk_split_esb_peripheral_is_linked(void);
 bool zmk_split_bt_peripheral_is_connected(void) {
-    return true;
+    return zmk_split_esb_peripheral_is_linked();
 }
 #endif
 

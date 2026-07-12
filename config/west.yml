@@ -8,6 +8,8 @@ manifest:
       url-base: https://github.com/manna-harbour
     - name: badjeff
       url-base: https://github.com/badjeff
+    - name: karrui
+      url-base: https://github.com/karrui
     - name: nrfconnect
       url-base: https://github.com/nrfconnect
     - name: kmobs
@@ -22,9 +24,12 @@ manifest:
       revision: main
       import: app/west.yml
     # ESB split transport + patched NCS (main branch targets NCS v3.1 / ZMK 0.4).
+    # Using our fork with real peripheral link-status reporting (derived from
+    # ESB TX acks) so the nice_view connection icon reflects the actual dongle
+    # link instead of a hardcoded "connected". Branched off badjeff/main.
     - name: zmk-feature-split-esb
-      remote: badjeff
-      revision: main
+      remote: karrui
+      revision: feat/peripheral-link-status
     - name: sdk-nrf
       remote: badjeff
       revision: v3.1-branch+zmk-fixes
