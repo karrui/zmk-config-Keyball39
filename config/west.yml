@@ -6,12 +6,8 @@ manifest:
       url-base: https://github.com/tangbonze
     - name: manna-harbour
       url-base: https://github.com/manna-harbour
-    - name: badjeff
-      url-base: https://github.com/badjeff
     - name: damex
       url-base: https://github.com/damex
-    - name: nrfconnect
-      url-base: https://github.com/nrfconnect
     - name: kmobs
       url-base: https://github.com/kmobs
     - name: M165437
@@ -24,22 +20,14 @@ manifest:
       revision: main
       import: app/west.yml
     # ESB split transport: damex's module — adaptive RSSI-driven channel hopping
-    # + native keepalive link status. NOT using its `import: true` (which pulls
-    # stock NCS + needs `west patch`); instead we keep badjeff's pre-patched NCS
-    # fork below, which already carries the Zephyr-4.1 compat fixes, so no
-    # `west patch` step is needed in the CI build workflow.
+    # + native keepalive link status. `import: true` pulls damex's own manifest,
+    # which pins stock NCS (sdk-nrf / nrfxlib v3.1.1). A basic nrf52840 build
+    # needs no `west patch` step — damex's patches target nrf71/openthread/mbedtls
+    # edge cases this config doesn't hit.
     - name: zmk-feature-split-esb
       remote: damex
       revision: v0.3.6
-    - name: sdk-nrf
-      remote: badjeff
-      revision: v3.1-branch+zmk-fixes
-      path: nrf
-    - name: nrfxlib
-      remote: nrfconnect
-      revision: v3.1-branch
-      repo-path: sdk-nrfxlib
-      path: nrfxlib
+      import: true
     # Prospector fork patched to build under ESB (stock carrefinho module does not).
     - name: zmk-prospector
       remote: kmobs
