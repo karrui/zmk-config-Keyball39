@@ -15,6 +15,25 @@
         events = <0>;
     };
 
+    // ESB split link (damex), central side. Identical to the halves' node in
+    // keyball39.dtsi; the dongle is the central so it sets no zmk,esb-self.
+    esb_link {
+        compatible = "zmk,split-esb";
+        base-address = [4B 1D A9 3F];
+        tx-power-dbm = <8>;
+
+        peripherals {
+            peripheral_left: peripheral_left {
+                pipe = <0>;
+                prefix = <0x2A>;
+            };
+            peripheral_right: peripheral_right {
+                pipe = <1>;
+                prefix = <0x91>;
+            };
+        };
+    };
+
     nice_view_spi: dummy_spi {
     };
 

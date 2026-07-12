@@ -42,14 +42,14 @@ U_NP,               U_NP,               U_NA,               U_NA,               
 &kp GRAVE         , &kp SEMI          , &kp MINUS         , &kp EQUAL         , &kp BSLH          , U_NP              , U_NP              , U_NP              , U_NP              , U_NP, \
 &kp N1            , &kp N2            , &kp N3            , &kp N4            , &kp N5            , U_NP              , &kp LSHFT         , &kp LCTRL         , &kp LALT          , &kp LGUI, \
 &kp N6            , &kp N7            , &kp N8            , &kp N9            , &kp N0            , U_NP              , U_NP              , U_NP              , U_NP              , U_NP, \
-U_NP,               U_NP,               &kp DOT,            &kp N0,             &kp MINUS,          U_NA,               U_NA,               U_NA,               U_NP,               U_NP
+U_NP,               U_NP,               &kp LBKT,           &kp RBKT,           &kp DOT,            U_NA,               U_NA,               U_NA,               U_NP,               U_NP
 
 // SYM (hold Enter) <- Charybdis L6: shifted number-row symbols + right arrows
 #define MIRYOKU_LAYER_SYM \
 &kp LS(GRAVE)     , &kp LS(SEMI)      , &kp LS(MINUS)     , &kp LS(EQUAL)     , &kp LS(BSLH)      , U_NP              , &kp HOME          , &kp UP            , &kp END           , U_NP, \
 &kp LS(N1)        , &kp LS(N2)        , &kp LS(N3)        , &kp LS(N4)        , &kp LS(N5)        , U_NP              , &kp LEFT          , &kp DOWN          , &kp RIGHT         , U_NP, \
 &kp LS(N6)        , &kp LS(N7)        , &kp LS(N8)        , &kp LS(N9)        , &kp LS(N0)        , U_NP              , U_NP              , U_NP              , U_NP              , U_NP, \
-U_NP,               U_NP,               &kp LPAR,           &kp RPAR,           &kp UNDER,          U_NA,               U_NA,               U_NA,               U_NP,               U_NP
+U_NP,               U_NP,               &kp LBRC,           &kp RBRC,           &kp GT,             U_NA,               U_NA,               U_NA,               U_NP,               U_NP
 
 // MOUSE layer is transparent: it exists only as the trackball's scroll layer
 // (its movement keys are useless with a trackball). Comma on BUTTON latches it

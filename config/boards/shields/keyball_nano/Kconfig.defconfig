@@ -3,7 +3,9 @@ if SHIELD_KEYBALL39_DONGLE
 config ZMK_KEYBOARD_NAME
 	default "Keyball39 Dongle"
 
-config ZMK_SPLIT_BLE_ROLE_CENTRAL
+# Transport-agnostic central role (was ZMK_SPLIT_BLE_ROLE_CENTRAL under BLE).
+# The ESB module keys off this symbol.
+config ZMK_SPLIT_ROLE_CENTRAL
 	default y
 
 config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS

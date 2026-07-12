@@ -61,6 +61,11 @@
 };
 
 / {
+    // This half is ESB pipe 1 (see esb_link in keyball39.dtsi).
+    chosen {
+        zmk,esb-self = &peripheral_right;
+    };
+
     split_inputs {
         #address-cells = <1>;
         #size-cells = <0>;

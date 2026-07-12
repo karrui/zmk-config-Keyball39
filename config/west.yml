@@ -4,20 +4,40 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: tangbonze
       url-base: https://github.com/tangbonze
-    - name: carrefinho
-      url-base: https://github.com/carrefinho
     - name: manna-harbour
       url-base: https://github.com/manna-harbour
+    - name: damex
+      url-base: https://github.com/damex
+    - name: kmobs
+      url-base: https://github.com/kmobs
+    - name: M165437
+      url-base: https://github.com/M165437
   projects:
+    # ZMK 0.4 stack (Zephyr 3.7 / LVGL 9). Required by the ESB display modules
+    # (Prospector + nice-view-gem). Mirrors kmobs/zmk-config@dongle_esb_prospector.
     - name: zmk
       remote: zmkfirmware
-      revision: v0.3
+      revision: main
       import: app/west.yml
+    # ESB split transport: damex's module — adaptive RSSI-driven channel hopping
+    # + native keepalive link status. `import: true` pulls damex's own manifest,
+    # which pins stock NCS (sdk-nrf / nrfxlib v3.1.1). A basic nrf52840 build
+    # needs no `west patch` step — damex's patches target nrf71/openthread/mbedtls
+    # edge cases this config doesn't hit.
+    - name: zmk-feature-split-esb
+      remote: damex
+      revision: v0.3.6
+      import: true
+    # Prospector fork patched to build under ESB (stock carrefinho module does not).
+    - name: zmk-prospector
+      remote: kmobs
+      revision: blenewstatus
+    # nice!view "gem" widgets for the halves (LVGL 9 / ZMK 0.4).
+    - name: nice-view-gem
+      remote: M165437
+      revision: main
     - name: zmk-pmw3610-driver
       remote: tangbonze
-      revision: main
-    - name: prospector-zmk-module
-      remote: carrefinho
       revision: main
     - name: miryoku_zmk
       remote: manna-harbour

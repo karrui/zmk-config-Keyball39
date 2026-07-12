@@ -7,6 +7,28 @@
 	zmk,physical-layout = &keyball_physical_layout;
     };
 
+    // ESB split link (damex). Central and every peripheral declare this
+    // identical node to pair; each peripheral additionally sets a
+    // `chosen { zmk,esb-self = &peripheral_x; }` in its own overlay.
+    // base-address is arbitrary (not a documented default) so a stray device
+    // can't pair. hop-channels/anchors default above WiFi ch11 (good). +8 dBm.
+    esb_link {
+        compatible = "zmk,split-esb";
+        base-address = [4B 1D A9 3F];
+        tx-power-dbm = <8>;
+
+        peripherals {
+            peripheral_left: peripheral_left {
+                pipe = <0>;
+                prefix = <0x2A>;
+            };
+            peripheral_right: peripheral_right {
+                pipe = <1>;
+                prefix = <0x91>;
+            };
+        };
+    };
+
 	keyball_physical_layout: keyball_physical_layout {
         compatible = "zmk,physical-layout";
         display-name = "Default";
