@@ -1,12 +1,17 @@
 include:
-  - board: seeeduino_xiao_ble
+  # 0.4 stack uses Zephyr hwmv2 board targets: xiao_ble / nice_nano with the
+  # `zmk` variant (was seeeduino_xiao_ble / nice_nano_v2). Mirrors kmobs.
+  - board: xiao_ble//zmk
     shield: keyball39_dongle prospector_adapter
     snippet: studio-rpc-usb-uart
-  - board: nice_nano_v2
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+  - board: nice_nano//zmk
     shield: keyball39_left nice_view_adapter nice_view_gem
-  - board: nice_nano_v2
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+  - board: nice_nano//zmk
     shield: keyball39_right nice_view_adapter nice_view_gem
-  - board: nice_nano_v2
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+  - board: nice_nano//zmk
     shield: settings_reset
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble//zmk
     shield: settings_reset
