@@ -11,12 +11,12 @@
 
 // Hold-tap tuning (Charybdis-style). Behaviors defined in keyball39.keymap:
 //   u_mt_l / u_mt_r : per-hand home-row mods (balanced + 250ms + chordal hold)
-//   u_lt_z          : Z pointer key, hold-preferred @120ms (instant Z+X chord)
-//   u_lt_sl         : / pointer key, balanced @175ms, unrestricted
+//   u_lt_pt         : Z and / pointer keys, balanced @175ms (quick Z+X / /+.
+//                     drag/scroll chord without dropping the tap when typing z)
 #define U_MT_L(MOD, TAP)   &u_mt_l MOD TAP
 #define U_MT_R(MOD, TAP)   &u_mt_r MOD TAP
-#define U_LT_Z(LAYER, TAP) &u_lt_z LAYER TAP
-#define U_LT_SL(LAYER, TAP) &u_lt_sl LAYER TAP
+#define U_LT_Z(LAYER, TAP)  &u_lt_pt LAYER TAP
+#define U_LT_SL(LAYER, TAP) &u_lt_pt LAYER TAP
 
 // Base override = Colemak-DH with two thumb tweaks (Charybdis-style):
 //   * rightmost/inner left thumb (was Mouse/Tab) -> FUN, still taps Tab
