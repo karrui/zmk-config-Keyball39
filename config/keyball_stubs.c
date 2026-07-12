@@ -1,10 +1,10 @@
 #include <zephyr/kernel.h>
-#include <zephyr/init.h>
 #include <zmk/keymap.h>
 #include <zmk/behavior.h>
 #include <zmk/behavior_queue.h>
 #include <zmk/event_manager.h>
 #include <zmk/events/split_peripheral_status_changed.h>
+#include <zmk/events/position_state_changed.h>
 #if IS_ENABLED(CONFIG_ZMK_SPLIT_ESB)
 #include <zmk_split_esb.h>
 #endif
@@ -28,33 +28,29 @@ bool zmk_split_bt_peripheral_is_connected(void) {
 }
 
 // damex reports ALL_CONNECTED at the ZMK transport layer and never raises
-// zmk_split_peripheral_status_changed, so the nice_view connection widget would
-// never refresh on its own. Poll the real link status (a lock-free snapshot
-// read, cheap) and raise the event when it flips, so the icon updates.
+// zmk_split_peripheral_status_changed, so the nice_view connection widget won't
+// refresh on its own. Re-check the real link status on each key event and raise
+// the event when it flips, so gem updates the icon. Event-driven on keypress
+// (not a periodic timer) so there's no extra wakeup draining the battery — the
+// check only runs when the half is already awake handling input.
 #if IS_ENABLED(CONFIG_ZMK_SPLIT_ESB)
-static bool esb_last_connected = true;
+static int esb_last_connected = -1; /* tri-state: unknown until the first check */
 
-static void esb_link_poll_work_cb(struct k_work *work);
-static K_WORK_DELAYABLE_DEFINE(esb_link_poll_work, esb_link_poll_work_cb);
-
-static void esb_link_poll_work_cb(struct k_work *work) {
+static int esb_link_status_listener(const zmk_event_t *eh) {
+    ARG_UNUSED(eh);
     struct zmk_split_esb_status status;
     zmk_split_esb_get_status(&status);
-    bool connected = !status.searching;
+    int connected = status.searching ? 0 : 1;
     if (connected != esb_last_connected) {
         esb_last_connected = connected;
         raise_zmk_split_peripheral_status_changed(
-            (struct zmk_split_peripheral_status_changed){.connected = connected});
+            (struct zmk_split_peripheral_status_changed){.connected = (bool)connected});
     }
-    k_work_reschedule(&esb_link_poll_work, K_MSEC(1000));
+    return ZMK_EV_EVENT_BUBBLE;
 }
 
-static int esb_link_poll_init(void) {
-    k_work_schedule(&esb_link_poll_work, K_SECONDS(2));
-    return 0;
-}
-
-SYS_INIT(esb_link_poll_init, APPLICATION, CONFIG_APPLICATION_INIT_PRIORITY);
+ZMK_LISTENER(esb_link_status, esb_link_status_listener);
+ZMK_SUBSCRIPTION(esb_link_status, zmk_position_state_changed);
 #endif /* CONFIG_ZMK_SPLIT_ESB */
 #endif /* !CONFIG_ZMK_SPLIT_BLE */
 
