@@ -4,6 +4,16 @@
 
 #if IS_ENABLED(CONFIG_ZMK_SPLIT) && !IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 
+// The nice!view peripheral widget calls this BLE-split-only function to show
+// the "connected to central" state. Under the ESB split transport BLE is off
+// and the symbol doesn't exist, so stub it. An ESB peripheral has no standing
+// connection to report; it is reachable whenever powered, so report connected.
+#if !IS_ENABLED(CONFIG_ZMK_SPLIT_BLE)
+bool zmk_split_bt_peripheral_is_connected(void) {
+    return true;
+}
+#endif
+
 int zmk_keymap_layer_activate(zmk_keymap_layer_id_t layer) {
     return 0;
 }

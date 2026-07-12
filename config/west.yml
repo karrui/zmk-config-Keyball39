@@ -12,6 +12,8 @@ manifest:
       url-base: https://github.com/badjeff
     - name: nrfconnect
       url-base: https://github.com/nrfconnect
+    - name: M165437
+      url-base: https://github.com/M165437
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -27,6 +29,12 @@ manifest:
       remote: manna-harbour
       revision: master
       path: miryoku
+    # nice!view "gem" widgets. Replaces the stock nice_view shield on the
+    # halves; its peripheral connection status is stubbed for ESB (see
+    # keyball_stubs.c).
+    - name: nice-view-gem
+      remote: M165437
+      revision: main
     # ESB split transport (replaces BLE split). The zmk-0.3 branch targets the
     # same NCS/Zephyr base as zmk v0.3 (NCS v2.6.4 / Zephyr v3.5.99).
     - name: zmk-feature-split-esb
