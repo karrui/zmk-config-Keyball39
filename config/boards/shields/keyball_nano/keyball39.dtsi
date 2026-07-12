@@ -9,11 +9,13 @@
 
     // ESB split radio addressing. Must match the dongle (central) exactly.
     // See keyball39_dongle.overlay for the identical node.
+    // Arbitrary, deliberately NOT the module's README defaults so a device
+    // someone else flashed with the defaults can't pair with this set.
     esb_split {
         compatible = "zmk,esb-split";
-        base-addr-0 = <0xE7 0xE7 0xE7 0xE7>;
-        base-addr-1 = <0xC2 0xC2 0xC2 0xC2>;
-        addr-prefix = <0xE7 0xC2 0xC3 0xC4 0xC5 0xC6 0xC7 0xC8>;
+        base-addr-0 = <0x4B 0x1D 0xA9 0x3F>;
+        base-addr-1 = <0x7C 0x62 0xE0 0x15>;
+        addr-prefix = <0x4B 0x7C 0x2A 0x91 0x58 0xB3 0xD6 0x0E>;
     };
 
 	keyball_physical_layout: keyball_physical_layout {
