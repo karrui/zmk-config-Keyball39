@@ -8,6 +8,10 @@ manifest:
       url-base: https://github.com/carrefinho
     - name: manna-harbour
       url-base: https://github.com/manna-harbour
+    - name: badjeff
+      url-base: https://github.com/badjeff
+    - name: nrfconnect
+      url-base: https://github.com/nrfconnect
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -23,5 +27,19 @@ manifest:
       remote: manna-harbour
       revision: master
       path: miryoku
+    # ESB split transport (replaces BLE split). The zmk-0.3 branch targets the
+    # same NCS/Zephyr base as zmk v0.3 (NCS v2.6.4 / Zephyr v3.5.99).
+    - name: zmk-feature-split-esb
+      remote: badjeff
+      revision: zmk-0.3
+    - name: sdk-nrf
+      remote: nrfconnect
+      revision: v2.6.4
+      path: nrf
+    - name: nrfxlib
+      remote: nrfconnect
+      revision: v2.6.4
+      repo-path: sdk-nrfxlib
+      path: nrfxlib
   self:
     path: config
