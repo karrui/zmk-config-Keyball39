@@ -39,7 +39,7 @@ layers:
   - {t: '$$mdi:keyboard-tab$$', h: Mouse}
   - {t: '$$mdi:keyboard-return$$', h: Sym}
   - {t: '$$mdi:backspace$$', h: Num}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:backspace-reverse-outline$$', h: Fun}
   Extra:
   - Q
   - W
@@ -79,7 +79,7 @@ layers:
   - {t: '$$mdi:keyboard-tab$$', h: Mouse}
   - {t: '$$mdi:keyboard-return$$', h: Sym}
   - {t: '$$mdi:backspace$$', h: Num}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:backspace-reverse-outline$$', h: Fun}
   Tap:
   - Q
   - W
@@ -119,7 +119,7 @@ layers:
   - $$mdi:keyboard-tab$$
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:apple-keyboard-shift$$
+  - $$mdi:backspace-reverse-outline$$
   Button:
   - UNDO
   - Sft+$$mdi:backspace-reverse-outline$$
@@ -142,14 +142,14 @@ layers:
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - {t: UNDO, type: held}
-  - Sft+$$mdi:backspace-reverse-outline$$
+  - Mouse
   - Ctl+INS
   - Sft+INS
   - AGAIN
   - AGAIN
   - Sft+INS
   - Ctl+INS
-  - Sft+$$mdi:backspace-reverse-outline$$
+  - Mouse
   - {t: UNDO, type: held alternate}
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
@@ -159,32 +159,32 @@ layers:
   - '&mkp MB2'
   - '&mkp MB2'
   - '&mkp MB1'
-  - $$mdi:apple-keyboard-shift$$
+  - '&mkp MB3'
   Nav:
-  - $$mdi:progress-download$$
-  - '&u_to_U_TAP'
-  - '&u_to_U_EXTRA'
-  - '&u_to_U_BASE'
+  - {t: Ctl+Sft+\, s: Ctl+Sft+|}
+  - {t: Meh+/, s: 'Meh+?'}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - AGAIN
-  - Sft+INS
-  - Ctl+INS
-  - Sft+$$mdi:backspace-reverse-outline$$
-  - UNDO
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - PG UP
+  - HOME
+  - $$mdi:arrow-up-bold$$
+  - END
+  - PG DN
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-shift$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:alpha-w-box$$', s: '$$mdi:apple-keyboard-caps$$'}
+  - $$mdi:apple-keyboard-caps$$
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
-  - $$mdi:arrow-up-bold$$
   - $$mdi:arrow-right-bold$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:apple-keyboard-option$$
-  - '&u_to_U_NUM'
-  - '&u_to_U_NAV'
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - INS
   - HOME
@@ -199,7 +199,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:backspace$$', type: backspace}
-  - $$mdi:apple-keyboard-shift$$
+  - $$mdi:backspace-reverse-outline$$
   Mouse:
   - $$mdi:progress-download$$
   - '&u_to_U_TAP'
@@ -221,16 +221,16 @@ layers:
   - {t: '$$mdi:menu-down$$', s: '$$mdi:mouse$$'}
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:apple-keyboard-option$$
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
+  - {t: '$$mdi:apple-keyboard-option$$', type: held alternate}
   - '&u_to_U_SYM'
   - '&u_to_U_MOUSE'
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:pan-left$$
   - $$mdi:pan-down$$
-  - $$mdi:pan-up$$
-  - $$mdi:pan-right$$
+  - {t: '$$mdi:pan-up$$', type: held alternate}
+  - {t: '$$mdi:pan-right$$', type: held alternate}
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
@@ -239,7 +239,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - '&mkp MB2'
   - '&mkp MB1'
-  - $$mdi:apple-keyboard-shift$$
+  - '&mkp MB3'
   Media:
   - $$mdi:progress-download$$
   - '&u_to_U_TAP'
@@ -279,37 +279,37 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - STOP
   - $$mdi:play-pause$$
-  - $$mdi:apple-keyboard-shift$$
+  - $$mdi:volume-off$$
   Num:
-  - {t: '[', s: '{'}
-  - {t: '7', s: '&'}
-  - {t: '8', s: '*'}
-  - {t: '9', s: (}
-  - {t: ']', s: '}'}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_BASE'
-  - '&u_to_U_EXTRA'
-  - '&u_to_U_TAP'
-  - $$mdi:progress-download$$
+  - {t: '`', s: '~'}
   - {t: ;, s: ':'}
+  - {t: '-', s: _}
+  - {t: '=', s: +}
+  - {t: \, s: '|'}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '1', s: '!'}
+  - {t: '2', s: '@'}
+  - {t: '3', s: '#'}
   - {t: '4', s: $}
   - {t: '5', s: '%'}
-  - {t: '6', s: ^}
-  - {t: '=', s: +}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-shift$$
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - {t: '`', s: '~'}
-  - {t: '1', s: '!'}
-  - {t: '2', s: '@'}
-  - {t: '3', s: '#'}
-  - {t: \, s: '|'}
+  - {t: '6', s: ^}
+  - {t: '7', s: '&'}
+  - {t: '8', s: '*'}
+  - {t: '9', s: (}
+  - {t: '0', s: )}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_NUM'
-  - '&u_to_U_NAV'
-  - $$mdi:apple-keyboard-option$$
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
@@ -319,37 +319,37 @@ layers:
   - {t: '-', s: _}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   Sym:
-  - '{'
-  - '&'
-  - '*'
-  - (
-  - '}'
+  - {t: Sft+`, s: Sft+~}
+  - {t: Sft+;, s: 'Sft+:'}
+  - {t: Sft+-, s: Sft+_}
+  - {t: Sft+=, s: Sft++}
+  - {t: Sft+\, s: Sft+|}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_BASE'
-  - '&u_to_U_EXTRA'
-  - '&u_to_U_TAP'
-  - $$mdi:progress-download$$
-  - ':'
-  - $
-  - '%'
-  - ^
-  - +
+  - HOME
+  - $$mdi:arrow-up-bold$$
+  - END
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:apple-keyboard-shift$$
-  - $$mdi:apple-keyboard-control$$
-  - $$mdi:apple-keyboard-option$$
-  - LGUI
-  - '~'
-  - '!'
-  - '@'
-  - '#'
-  - '|'
+  - {t: Sft+1, s: Sft+!}
+  - {t: Sft+2, s: Sft+@}
+  - {t: Sft+3, s: Sft+#}
+  - {t: Sft+4, s: Sft+$}
+  - {t: Sft+5, s: Sft+%}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_SYM'
-  - '&u_to_U_MOUSE'
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:arrow-left-bold$$
+  - $$mdi:arrow-down-bold$$
+  - $$mdi:arrow-right-bold$$
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: Sft+6, s: Sft+^}
+  - {t: Sft+7, s: Sft+&}
+  - {t: Sft+8, s: Sft+*}
+  - {t: Sft+9, s: Sft+(}
+  - {t: Sft+0, s: Sft+)}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
@@ -359,7 +359,7 @@ layers:
   - _
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   Fun:
   - F12
   - F7
@@ -399,4 +399,4 @@ layers:
   - $$mdi:keyboard-tab$$
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:apple-keyboard-shift$$
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
