@@ -97,7 +97,10 @@
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_split>;
-        input-processors = <&zip_temp_layer 4 700>;
+        // Automouse disabled: trackball movement no longer auto-activates the
+        // NAV layer (was messing up typing when the ball was brushed). The
+        // cursor still moves; hold the MOUSE/MEDIA thumb for scroll/snipe.
+        // input-processors = <&zip_temp_layer 4 700>;
 
         scroll {
             layers = <5>;
