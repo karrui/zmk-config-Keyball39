@@ -21,6 +21,7 @@
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <250>;
+            quick-tap-ms = <200>;
             hold-trigger-on-release;
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 36 37 38>;
             bindings = <&kp>, <&kp>;
@@ -30,6 +31,7 @@
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <250>;
+            quick-tap-ms = <200>;
             hold-trigger-on-release;
             hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33 34 35>;
             bindings = <&kp>, <&kp>;
@@ -41,6 +43,7 @@
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <120>;
+            quick-tap-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
         // Pointer key /: balanced @175ms, unrestricted (no positional list) so
@@ -50,7 +53,22 @@
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <175>;
+            quick-tap-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
     };
+};
+
+// Enable tap-then-hold key repeat on ALL hold-taps. Re-pressing within 200ms of
+// a tap fires the tap key and holds it -> continuous repeat (e.g. double-tap-
+// hold Space/Bspc, or a home-row letter). The custom behaviors above set
+// quick-tap-ms inline; these two patch Miryoku's own hold-taps: &u_lt (thumb
+// layer-taps: Space/NAV, Bspc/NUM, Tab/FUN, Ret/SYM, Esc/MEDIA) and &u_mt
+// (X/. RALT alt keys). NOTE: Miryoku uses &u_lt/&u_mt, NOT ZMK's built-in
+// &lt/&mt -- overriding the built-ins here has no effect on this keymap.
+&u_lt {
+    quick-tap-ms = <200>;
+};
+&u_mt {
+    quick-tap-ms = <200>;
 };
