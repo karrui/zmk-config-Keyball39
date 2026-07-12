@@ -97,16 +97,22 @@
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_split>;
-        input-processors = <&zip_temp_layer 4 700>;
+        // Automouse disabled: trackball movement no longer auto-activates the
+        // NAV layer (was messing up typing when the ball was brushed).
+        // input-processors = <&zip_temp_layer 4 700>;
 
+        // Trackball modifiers: hold Z or / (BUTTON = layer 3) -> snipe; add X
+        // or . (which fire &mo U_MOUSE, layer 5) -> scroll. Children are tried
+        // in order and stop at the first match, so with BUTTON(3) and MOUSE(5)
+        // both active (Z+X), `scroll` wins over `snipe`.
         scroll {
             layers = <5>;
             input-processors = <&zip_xy_to_scroll_mapper>;
         };
 
         snipe {
-            layers = <6>;
-            input-processors = <&zip_xy_scaler 1 3>;
+            layers = <3>;
+            input-processors = <&zip_xy_scaler 1 2>;
         };
     };
 };
