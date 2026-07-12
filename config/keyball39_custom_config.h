@@ -42,12 +42,22 @@ U_NP,               U_NP,               &kp DOT,            &kp N0,             
 &kp LS(N6)        , &kp LS(N7)        , &kp LS(N8)        , &kp LS(N9)        , &kp LS(N0)        , U_NP              , U_NP              , U_NP              , U_NP              , U_NP, \
 U_NP,               U_NP,               &kp LPAR,           &kp RPAR,           &kp UNDER,          U_NA,               U_NA,               U_NA,               U_NP,               U_NP
 
-// BUTTON (hold Z or /) = mouse buttons + clipboard. X and . are remapped to
-// &mo U_MOUSE so that Z+X (or /+.) activates the scroll layer; the dongle
-// input-listener runs its `scroll` child before `snipe`, so scroll wins while
-// Z (BUTTON = snipe) is still held.
+// MOUSE layer is transparent: it exists only as the trackball's scroll layer
+// (its movement keys are useless with a trackball). Comma on BUTTON latches it
+// via &tog U_MOUSE, so scrolling toggles on/off while typing still passes
+// through; X/. still activate it momentarily for the Z+X / /+. scroll chord.
+#define MIRYOKU_LAYER_MOUSE \
+&trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,            \
+&trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,            \
+&trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,            \
+&trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans,             &trans
+
+// BUTTON (hold Z or /) = mouse buttons + clipboard. X and . -> &mo U_MOUSE for
+// the Z+X (or /+.) momentary scroll chord; comma -> &tog U_MOUSE latches scroll
+// on/off. The dongle listener runs its `scroll` child before `snipe`, so scroll
+// wins while Z (BUTTON = snipe) is still held.
 #define MIRYOKU_LAYER_BUTTON \
 U_UND,              U_CUT,              U_CPY,              U_PST,              U_RDO,              U_RDO,              U_PST,              U_CPY,              U_CUT,              U_UND,             \
 &kp LGUI,           &kp LALT,           &kp LCTRL,          &kp LSHFT,          U_NU,               U_NU,               &kp LSHFT,          &kp LCTRL,          &kp LALT,           &kp LGUI,          \
-U_UND,              &mo U_MOUSE,        U_CPY,              U_PST,              U_RDO,              U_RDO,              U_PST,              U_CPY,              &mo U_MOUSE,        U_UND,             \
+U_UND,              &mo U_MOUSE,        U_CPY,              U_PST,              U_RDO,              U_RDO,              U_PST,              &tog U_MOUSE,       &mo U_MOUSE,        U_UND,             \
 U_NP,               U_NP,               U_BTN3,             U_BTN1,             U_BTN2,             U_BTN2,             U_BTN1,             U_BTN3,             U_NP,               U_NP
