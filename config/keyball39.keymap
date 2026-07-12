@@ -62,11 +62,13 @@
 // Enable tap-then-hold key repeat on ALL hold-taps. Re-pressing within 200ms of
 // a tap fires the tap key and holds it -> continuous repeat (e.g. double-tap-
 // hold Space/Bspc, or a home-row letter). The custom behaviors above set
-// quick-tap-ms inline; these two override Miryoku's built-in &lt (thumb layer-
-// taps: Space/NAV, Bspc/NUM, Tab/FUN, Ret/SYM, Esc/MEDIA) and &mt (X/. alt).
-&lt {
+// quick-tap-ms inline; these two patch Miryoku's own hold-taps: &u_lt (thumb
+// layer-taps: Space/NAV, Bspc/NUM, Tab/FUN, Ret/SYM, Esc/MEDIA) and &u_mt
+// (X/. RALT alt keys). NOTE: Miryoku uses &u_lt/&u_mt, NOT ZMK's built-in
+// &lt/&mt -- overriding the built-ins here has no effect on this keymap.
+&u_lt {
     quick-tap-ms = <200>;
 };
-&mt {
+&u_mt {
     quick-tap-ms = <200>;
 };
