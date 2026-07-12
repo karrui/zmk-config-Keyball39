@@ -15,15 +15,23 @@
         events = <0>;
     };
 
-    // ESB split radio addressing. Must match both peripheral halves exactly
-    // (see keyball39.dtsi, included by keyball39_left/right).
-    // Arbitrary, deliberately NOT the module's README defaults so a device
-    // someone else flashed with the defaults can't pair with this set.
-    esb_split {
-        compatible = "zmk,esb-split";
-        base-addr-0 = <0x4B 0x1D 0xA9 0x3F>;
-        base-addr-1 = <0x7C 0x62 0xE0 0x15>;
-        addr-prefix = <0x4B 0x7C 0x2A 0x91 0x58 0xB3 0xD6 0x0E>;
+    // ESB split link (damex), central side. Identical to the halves' node in
+    // keyball39.dtsi; the dongle is the central so it sets no zmk,esb-self.
+    esb_link {
+        compatible = "zmk,split-esb";
+        base-address = [4B 1D A9 3F];
+        tx-power-dbm = <8>;
+
+        peripherals {
+            peripheral_left: peripheral_left {
+                pipe = <0>;
+                prefix = <0x2A>;
+            };
+            peripheral_right: peripheral_right {
+                pipe = <1>;
+                prefix = <0x91>;
+            };
+        };
     };
 
     nice_view_spi: dummy_spi {

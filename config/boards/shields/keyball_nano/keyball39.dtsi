@@ -7,15 +7,26 @@
 	zmk,physical-layout = &keyball_physical_layout;
     };
 
-    // ESB split radio addressing. Must match the dongle (central) exactly.
-    // See keyball39_dongle.overlay for the identical node.
-    // Arbitrary, deliberately NOT the module's README defaults so a device
-    // someone else flashed with the defaults can't pair with this set.
-    esb_split {
-        compatible = "zmk,esb-split";
-        base-addr-0 = <0x4B 0x1D 0xA9 0x3F>;
-        base-addr-1 = <0x7C 0x62 0xE0 0x15>;
-        addr-prefix = <0x4B 0x7C 0x2A 0x91 0x58 0xB3 0xD6 0x0E>;
+    // ESB split link (damex). Central and every peripheral declare this
+    // identical node to pair; each peripheral additionally sets a
+    // `chosen { zmk,esb-self = &peripheral_x; }` in its own overlay.
+    // base-address is arbitrary (not a documented default) so a stray device
+    // can't pair. hop-channels/anchors default above WiFi ch11 (good). +8 dBm.
+    esb_link {
+        compatible = "zmk,split-esb";
+        base-address = [4B 1D A9 3F];
+        tx-power-dbm = <8>;
+
+        peripherals {
+            peripheral_left: peripheral_left {
+                pipe = <0>;
+                prefix = <0x2A>;
+            };
+            peripheral_right: peripheral_right {
+                pipe = <1>;
+                prefix = <0x91>;
+            };
+        };
     };
 
 	keyball_physical_layout: keyball_physical_layout {

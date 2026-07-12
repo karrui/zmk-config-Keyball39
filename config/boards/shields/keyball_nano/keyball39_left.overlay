@@ -6,6 +6,13 @@
 
 #include "keyball39.dtsi"
 
+/ {
+	// This half is ESB pipe 0 (see esb_link in keyball39.dtsi).
+	chosen {
+		zmk,esb-self = &peripheral_left;
+	};
+};
+
 &kscan0 {
 	col-gpios
 		= <&pro_micro 4 GPIO_ACTIVE_HIGH>
