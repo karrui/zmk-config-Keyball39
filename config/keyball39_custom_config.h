@@ -69,4 +69,4 @@ U_NP,               U_NP,               &kp LPAR,           &kp RPAR,           
 U_UND,              U_CUT,              U_CPY,              U_PST,              U_RDO,              U_RDO,              U_PST,              U_CPY,              U_CUT,              U_UND,             \
 &kp LGUI,           &kp LALT,           &kp LCTRL,          &kp LSHFT,          U_NU,               U_NU,               &kp LSHFT,          &kp LCTRL,          &kp LALT,           &kp LGUI,          \
 U_UND,              &mo U_MOUSE,        U_CPY,              U_PST,              U_RDO,              U_RDO,              U_PST,              &tog U_MOUSE,       &mo U_MOUSE,        U_UND,             \
-U_NP,               U_NP,               U_BTN3,             U_BTN1,             U_BTN2,             U_BTN2,             U_BTN1,             U_BTN3,             U_NP,               U_NP
+U_NP,               U_NP,               U_BTN2,             U_BTN1,             U_BTN3,             U_BTN3,             U_BTN1,             U_BTN2,             U_NP,               U_NP
