@@ -121,16 +121,16 @@ layers:
   - {t: '$$mdi:backspace$$', type: backspace}
   - $$mdi:backspace-reverse-outline$$
   Button:
-  - UNDO
-  - Sft+$$mdi:backspace-reverse-outline$$
-  - Ctl+INS
-  - Sft+INS
-  - AGAIN
-  - AGAIN
-  - Sft+INS
-  - Ctl+INS
-  - Sft+$$mdi:backspace-reverse-outline$$
-  - UNDO
+  - Ctl+Z
+  - Ctl+X
+  - Ctl+C
+  - Ctl+V
+  - Ctl+Y
+  - Ctl+Y
+  - Ctl+V
+  - Ctl+C
+  - Ctl+X
+  - Ctl+Z
   - LGUI
   - $$mdi:apple-keyboard-option$$
   - $$mdi:apple-keyboard-control$$
@@ -141,16 +141,16 @@ layers:
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - {t: UNDO, type: held}
+  - {t: Ctl+Z, type: held}
   - Mouse
-  - Ctl+INS
-  - Sft+INS
-  - AGAIN
-  - AGAIN
-  - Sft+INS
+  - Ctl+C
+  - Ctl+V
+  - Ctl+Y
+  - Ctl+Y
+  - Ctl+V
   - {t: Mouse, h: toggle}
   - Mouse
-  - {t: UNDO, type: held alternate}
+  - {t: Ctl+Z, type: held alternate}
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
@@ -361,42 +361,42 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   Fun:
-  - F12
-  - F7
-  - F8
-  - F9
-  - $$mdi:printer-outline$$
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_BASE'
-  - '&u_to_U_EXTRA'
-  - '&u_to_U_TAP'
   - $$mdi:progress-download$$
-  - F11
-  - F4
-  - F5
-  - F6
-  - SLCK
+  - '&u_to_U_TAP'
+  - '&u_to_U_EXTRA'
+  - '&u_to_U_BASE'
   - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:printer-outline$$
+  - F9
+  - F8
+  - F7
+  - F12
+  - LGUI
+  - $$mdi:apple-keyboard-option$$
+  - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-shift$$
-  - $$mdi:apple-keyboard-control$$
-  - $$mdi:apple-keyboard-option$$
-  - LGUI
-  - F10
-  - F1
-  - F2
-  - F3
-  - PAUSE BREAK
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&u_to_U_FUN'
+  - SLCK
+  - F6
+  - F5
+  - F4
+  - F11
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - $$mdi:apple-keyboard-option$$
   - '&u_to_U_MEDIA'
-  - $$mdi:apple-keyboard-option$$
+  - '&u_to_U_FUN'
   - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - PAUSE BREAK
+  - F3
+  - F2
+  - F1
+  - F10
   - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-option$$
   - LGUI
-  - APP
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - $$mdi:keyboard-tab$$
   - $$mdi:keyboard-space$$
-  - {t: '$$mdi:keyboard-tab$$', type: held}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
+  - {t: APP, type: held alternate}
