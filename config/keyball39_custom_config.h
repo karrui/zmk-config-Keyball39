@@ -9,6 +9,12 @@
 
 #define MIRYOKU_ALPHAS_COLEMAKDH
 
+// Clipboard: use Ctrl-based binds (Ctrl+C/V/X/Z/Y) instead of the Miryoku
+// COMMON default (Ctrl+Insert / Shift+Insert), which macOS ignores. Drives the
+// BUTTON-layer U_CUT/U_CPY/U_PST/U_UND/U_RDO keys. Cross-OS given the user's
+// Ctrl<->Cmd swap on macOS (physical Ctrl -> Cmd there).
+#define MIRYOKU_CLIPBOARD_WIN
+
 // Hold-tap tuning (Charybdis-style). Behaviors defined in keyball39.keymap:
 //   u_mt_l / u_mt_r : per-hand home-row mods (balanced + 250ms + chordal hold)
 //   u_lt_z          : Z pointer key, hold-preferred @120ms (instant Z+X chord)
@@ -50,6 +56,15 @@ U_NP,               U_NP,               &kp LBKT,           &kp RBKT,           
 &kp LS(N1)        , &kp LS(N2)        , &kp LS(N3)        , &kp LS(N4)        , &kp LS(N5)        , U_NP              , &kp LEFT          , &kp DOWN          , &kp RIGHT         , U_NP, \
 &kp LS(N6)        , &kp LS(N7)        , &kp LS(N8)        , &kp LS(N9)        , &kp LS(N0)        , U_NP              , U_NP              , U_NP              , U_NP              , U_NP, \
 U_NP,               U_NP,               &kp LBRC,           &kp RBRC,           &kp GT,             U_NA,               U_NA,               U_NA,               U_NP,               U_NP
+
+// FUN (hold Tab) = stock Miryoku FUN mirrored left<->right, so the F-keys sit
+// on the RIGHT hand (FUN is held by the left thumb, freeing the right to press
+// them). Just the default MIRYOKU_ALTERNATIVES_FUN flipped column-for-column.
+#define MIRYOKU_LAYER_FUN \
+U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              &kp PSCRN,         &kp F9,            &kp F8,            &kp F7,            &kp F12,           \
+&kp LGUI,          &kp LALT,          &kp LCTRL,         &kp LSHFT,         U_NA,              &kp SLCK,          &kp F6,            &kp F5,            &kp F4,            &kp F11,           \
+U_NA,              &kp RALT,          &u_to_U_MEDIA,     &u_to_U_FUN,       U_NA,              &kp PAUSE_BREAK,   &kp F3,            &kp F2,            &kp F1,            &kp F10,           \
+U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp TAB,           &kp SPACE,         &kp K_APP,         U_NP,              U_NP
 
 // MOUSE layer is transparent: it exists only as the trackball's scroll layer
 // (its movement keys are useless with a trackball). Comma on BUTTON latches it
