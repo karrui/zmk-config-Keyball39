@@ -13,9 +13,10 @@
 / {
     behaviors {
         // Home-row mods: Permissive Hold (balanced) + Chordal Hold (positional).
-        // A mod only holds when a key on the OTHER hand follows, so same-hand
-        // rolls (as/en) stay taps. hold-trigger-on-release lets same-hand mod
-        // combos still work. tapping-term 250.
+        // A mod holds when the OTHER hand OR a same-hand thumb (33-38) follows,
+        // so alpha rolls (as/en) stay taps but mod+thumb chords (Ctrl+Space,
+        // Ctrl+Bspc) fire. hold-trigger-on-release lets same-hand mod combos
+        // still work. tapping-term 250.
         u_mt_l: u_mt_l {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -23,7 +24,7 @@
             tapping-term-ms = <250>;
             quick-tap-ms = <200>;
             hold-trigger-on-release;
-            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 36 37 38>;
+            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 33 34 35 36 37 38>;
             bindings = <&kp>, <&kp>;
         };
         u_mt_r: u_mt_r {
@@ -33,7 +34,7 @@
             tapping-term-ms = <250>;
             quick-tap-ms = <200>;
             hold-trigger-on-release;
-            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33 34 35>;
+            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33 34 35 36 37 38>;
             bindings = <&kp>, <&kp>;
         };
         // Pointer key Z: hold-preferred so the next key drops into the mouse
@@ -68,6 +69,12 @@
 // &lt/&mt -- overriding the built-ins here has no effect on this keymap.
 &u_lt {
     quick-tap-ms = <200>;
+    // Miryoku ships thumb layer-taps as "tap-preferred" (holds only if you
+    // physically outlast the 200ms term). Fast rolls into a layer key -- e.g.
+    // hold-Bspc(NUM)+minus for a hyphen -- then resolved as a Bspc tap. Balanced
+    // holds the moment the interrupting key is released (the roll pattern),
+    // while a solo thumb press under the term still taps cleanly.
+    flavor = "balanced";
 };
 &u_mt {
     quick-tap-ms = <200>;
