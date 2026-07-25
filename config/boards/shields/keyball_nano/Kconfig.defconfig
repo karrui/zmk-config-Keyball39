@@ -19,13 +19,22 @@ config ZMK_SPLIT
 	
 endif
 
-if ZMK_DISPLAY
+# I2C/SSD1306 are for the halves' nice!view OLED only. Scoped away from the
+# dongle shield: it drives Prospector's SPI ST7789V TFT, and an unconditional
+# SSD1306 default here was leaking into the dongle build, silently defaulting
+# CONFIG_ZMK_DISPLAY_BLANK_ON_IDLE=y (that option defaults to y if SSD1306) and
+# blanking the dongle's screen after 30s idle.
+if (SHIELD_KEYBALL39_LEFT || SHIELD_KEYBALL39_RIGHT) && ZMK_DISPLAY
 
 config I2C
     default y
 
 config SSD1306
     default y
+
+endif
+
+if ZMK_DISPLAY
 
 choice ZMK_DISPLAY_WORK_QUEUE
     default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
