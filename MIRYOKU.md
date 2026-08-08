@@ -89,7 +89,7 @@ Miryoku supports many layout options via `custom_config.h`. Edit `miryoku/miryok
 
 See [Miryoku docs](https://github.com/manna-harbour/miryoku/tree/master/docs/reference) for all options.
 
-## Miryoku Default Layers
+## Layers
 
 | Layer | Index | Activated By | Contents |
 |-------|-------|-------------|----------|
@@ -98,8 +98,51 @@ See [Miryoku docs](https://github.com/manna-harbour/miryoku/tree/master/docs/ref
 | TAP | 2 | Tap layer of mod-morph keys | Colemak-DH alphas (tap-only) |
 | BUTTON | 3 | Z / / (bottom row, Colemak-DH) | Mouse buttons, clipboard |
 | NAV | 4 | SPACE thumb hold | Nav arrows, trackball automouse |
-| MOUSE | 5 | TAB thumb hold | Mouse movement, scroll, trackball scroll |
+| MOUSE | 5 | Not thumb-bound here (BUTTON chords) | Transparent — exists as the trackball scroll layer |
 | MEDIA | 6 | ESC thumb hold (tap=ESC) | Media controls, RGB, BT — **trackball snipe** |
-| NUM | 7 | RET thumb hold (tap=RET) | Numbers |
-| SYM | 8 | BSPC thumb hold (tap=BSPC) | Symbols |
-| FUN | 9 | DEL thumb hold (tap=DEL) | Function keys |
+| NUM | 7 | BSPC thumb hold (tap=BSPC) | Numbers |
+| SYM | 8 | RET thumb hold (tap=RET) | Symbols |
+| FUN | 9 | TAB thumb hold (tap=TAB) | Function keys, Delete on the Bspc thumb |
+| TILE | 10 | Either pinky-bottom key (pos 30 / pos 38) | Mudeer window tiling — see below |
+
+Layer 10 is an addition to Miryoku's stock list, appended last so the trackball's hardcoded layer numbers (4/5/6) don't move. `MIRYOKU_LAYER_LIST` and the `U_*` layer indices are overridden in `config/keyball39_custom_config.h`.
+
+## TILE layer — Mudeer window tiling
+
+[Mudeer](https://github.com/darkstego/Mudeer) is a KWin script; every tile it
+offers is an independently registered KDE shortcut, so all of these are rebound
+under **System Settings → Shortcuts → search "mudeer"**.
+
+Hold either pinky-bottom key (left position 30, right position 38) and drive the
+tiling with the other hand. The three alpha rows are *translated*, not mirrored —
+the leftmost key of either half is the leftmost tile on screen:
+
+```
+ Q ¼ far-left   W ¼ mid-left   F ¼ mid-right   P ¼ far-right   B whole
+ A ⅔ left       R ⅓ left       S ⅓ center      T ⅓ right       G ⅔ right
+ Z ¾ left       X ½ left       C ½ center      D ½ right       V ¾ right
+```
+
+Rows run finest (quarters) to widest (halves and three-quarters); each row is
+symmetric about its middle, and a row's outer key is the "grown" version of its
+neighbour. Both halves send the same keycode for a given tile, so one KDE
+shortcut serves both hands.
+
+Modifiers carry the vertical dimension (`U_TIL` uses only Meta+Ctrl so Shift and
+Alt stay free). Shift and Alt sit on the thumbs of both hands on this layer, and
+the fixed Alt on position 31 works as the left hand's bottom-half key:
+
+| Held | Emits | Mudeer action |
+|------|-------|---------------|
+| — | `Meta+Ctrl+<key>` | full height |
+| Shift | `Meta+Ctrl+Shift+<key>` | *Top* variant |
+| Alt | `Meta+Ctrl+Alt+<key>` | *Bottom* variant |
+
+Meta+Ctrl was chosen to stay clear of the Meta+Shift combos already used by
+Spectacle and the Claude Desktop quick-invoke.
+
+For splits finer than a half, enable **sequential tiling** in the Kwin script
+options (System Settings → Kwin Scripts → Mudeer). A second tile press within 1s
+splits the first tile vertically using the second tile's horizontal slot, so
+`R` then `X` gives the left third, top half; `R` then `S` gives the left third,
+middle vertical third.
