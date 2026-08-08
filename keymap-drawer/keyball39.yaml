@@ -401,42 +401,42 @@ layers:
   - $$mdi:backspace-reverse-outline$$
   - {t: APP, type: held alternate}
   Tile:
-  - Gui+Ctl+Q
-  - Gui+Ctl+W
-  - Gui+Ctl+F
-  - Gui+Ctl+P
-  - Gui+Ctl+B
-  - Gui+Ctl+Q
-  - Gui+Ctl+W
-  - Gui+Ctl+F
-  - Gui+Ctl+P
-  - Gui+Ctl+B
-  - Gui+Ctl+A
-  - Gui+Ctl+R
-  - Gui+Ctl+S
-  - Gui+Ctl+T
-  - Gui+Ctl+G
-  - Gui+Ctl+A
-  - Gui+Ctl+R
-  - Gui+Ctl+S
-  - Gui+Ctl+T
-  - Gui+Ctl+G
-  - {t: Gui+Ctl+Z, type: held alternate}
-  - {t: Gui+Ctl+X, type: held alternate}
-  - Gui+Ctl+C
-  - Gui+Ctl+D
-  - Gui+Ctl+V
-  - Gui+Ctl+Z
-  - Gui+Ctl+X
-  - Gui+Ctl+C
-  - {t: Gui+Ctl+D, type: held alternate}
-  - {t: Gui+Ctl+V, type: held alternate}
+  - Gui+Alt+Q
+  - Gui+Alt+W
+  - Gui+Alt+F
+  - Gui+Alt+P
+  - Gui+Alt+B
+  - Gui+Alt+Q
+  - Gui+Alt+W
+  - Gui+Alt+F
+  - Gui+Alt+P
+  - Gui+Alt+B
+  - Gui+Alt+A
+  - Gui+Alt+R
+  - Gui+Alt+S
+  - Gui+Alt+T
+  - Gui+Alt+G
+  - Gui+Alt+A
+  - Gui+Alt+R
+  - Gui+Alt+S
+  - Gui+Alt+T
+  - Gui+Alt+G
+  - {t: Gui+Alt+Z, type: held alternate}
+  - {t: Gui+Alt+X, type: held alternate}
+  - Gui+Alt+C
+  - Gui+Alt+D
+  - Gui+Alt+V
+  - Gui+Alt+Z
+  - Gui+Alt+X
+  - Gui+Alt+C
+  - {t: Gui+Alt+D, type: held alternate}
+  - {t: Gui+Alt+V, type: held alternate}
   - {t: Tile, type: held}
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
   - {t: '$$mdi:apple-keyboard-shift$$', type: held alternate}
-  - {t: '$$mdi:apple-keyboard-option$$', type: held alternate}
+  - {t: '$$mdi:apple-keyboard-control$$', type: held alternate}
   - {t: '$$mdi:apple-keyboard-shift$$', type: held alternate}
-  - {t: '$$mdi:apple-keyboard-option$$', type: held alternate}
+  - {t: '$$mdi:apple-keyboard-control$$', type: held alternate}
   - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
