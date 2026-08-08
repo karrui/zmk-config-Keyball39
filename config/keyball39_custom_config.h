@@ -57,11 +57,14 @@ MIRYOKU_X(TILE,   "Tile")
 #define U_LT_Z(LAYER, TAP) &u_lt_z LAYER TAP
 #define U_LT_SL(LAYER, TAP) &u_lt_sl LAYER TAP
 
-// Mudeer tile shortcut: Meta+Ctrl + key. Deliberately only TWO modifiers --
-// that leaves Shift and Alt free as the vertical dimension (see the TILE layer
-// below), and keeps clear of the Meta+Shift combos already taken by Spectacle
-// and the Claude Desktop quick-invoke.
-#define U_TIL(K) &kp LG(LC(K))
+// Mudeer tile shortcut: Meta+Alt + key. Deliberately only TWO modifiers -- that
+// leaves Shift and Ctrl free as the vertical dimension (see the TILE layer
+// below). Base picked by auditing ~/.config/kglobalshortcutsrc across all 45
+// combos: Meta+Alt collides once (plasmashell cycle-panels on Meta+Alt+P),
+// against 3 for Meta+Ctrl (kwin Activate Window Demanding Attention on +A,
+// plasmashell clipboard_action on +X, the Vicinae launcher on +V) and 5 for
+// Mudeer's stock Meta. Meta+Shift is avoided throughout.
+#define U_TIL(K) &kp LG(LA(K))
 
 // Base override = Colemak-DH with two thumb tweaks (Charybdis-style):
 //   * rightmost/inner left thumb (was Mouse/Tab) -> FUN, still taps Tab
@@ -145,10 +148,11 @@ U_NP,               U_NP,               U_BTN2,             U_BTN1,             
 // legends), so one KDE shortcut serves both hands and none of them land on
 // punctuation. Vertical position rides on the two modifiers U_TIL deliberately
 // left free, on the thumbs of both hands:
-//   plain      -> full height   (Meta+Ctrl+key)
-//   + Shift    -> top half      (Meta+Ctrl+Shift+key)
-//   + Alt      -> bottom half   (Meta+Ctrl+Alt+key)
-// The fixed Alt on position 31 doubles as the left hand's bottom-half key.
+//   plain      -> full height   (Meta+Alt+key)
+//   + Shift    -> top half      (Meta+Alt+Shift+key)
+//   + Ctrl     -> bottom half   (Meta+Alt+Ctrl+key)
+// The fixed Alt on position 31 is simply part of the prefix here, so pressing
+// it alongside a tile is harmless.
 // Finer vertical splits come from Mudeer's sequential tiling (enable it in the
 // Kwin script options): a second tile press within 1s splits the first one
 // vertically by the second tile's horizontal slot, so R then X = left third,
@@ -157,4 +161,4 @@ U_NP,               U_NP,               U_BTN2,             U_BTN1,             
 U_TIL(Q),           U_TIL(W),           U_TIL(F),           U_TIL(P),           U_TIL(B),           U_TIL(Q),           U_TIL(W),           U_TIL(F),           U_TIL(P),           U_TIL(B),          \
 U_TIL(A),           U_TIL(R),           U_TIL(S),           U_TIL(T),           U_TIL(G),           U_TIL(A),           U_TIL(R),           U_TIL(S),           U_TIL(T),           U_TIL(G),          \
 U_TIL(Z),           U_TIL(X),           U_TIL(C),           U_TIL(D),           U_TIL(V),           U_TIL(Z),           U_TIL(X),           U_TIL(C),           U_TIL(D),           U_TIL(V),          \
-U_NP,               U_NP,               U_NU,               &kp LSHFT,          &kp LALT,           &kp LSHFT,          &kp LALT,           U_NU,               U_NP,               U_NP
+U_NP,               U_NP,               U_NU,               &kp LSHFT,          &kp LCTRL,          &kp LSHFT,          &kp LCTRL,          U_NU,               U_NP,               U_NP

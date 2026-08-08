@@ -128,18 +128,21 @@ symmetric about its middle, and a row's outer key is the "grown" version of its
 neighbour. Both halves send the same keycode for a given tile, so one KDE
 shortcut serves both hands.
 
-Modifiers carry the vertical dimension (`U_TIL` uses only Meta+Ctrl so Shift and
-Alt stay free). Shift and Alt sit on the thumbs of both hands on this layer, and
-the fixed Alt on position 31 works as the left hand's bottom-half key:
+Modifiers carry the vertical dimension (`U_TIL` uses only Meta+Alt so Shift and
+Ctrl stay free). Shift and Ctrl sit on the thumbs of both hands on this layer:
 
 | Held | Emits | Mudeer action |
 |------|-------|---------------|
-| — | `Meta+Ctrl+<key>` | full height |
-| Shift | `Meta+Ctrl+Shift+<key>` | *Top* variant |
-| Alt | `Meta+Ctrl+Alt+<key>` | *Bottom* variant |
+| — | `Meta+Alt+<key>` | full height |
+| Shift | `Meta+Alt+Shift+<key>` | *Top* variant |
+| Ctrl | `Meta+Alt+Ctrl+<key>` | *Bottom* variant |
 
-Meta+Ctrl was chosen to stay clear of the Meta+Shift combos already used by
-Spectacle and the Claude Desktop quick-invoke.
+The base was picked by auditing `~/.config/kglobalshortcutsrc` across all 45
+combos. Meta+Alt collides exactly once — plasmashell's `cycle-panels` on
+`Meta+Alt+P`, which must be cleared — against 3 for Meta+Ctrl (kwin *Activate
+Window Demanding Attention* on `+A`, plasmashell `clipboard_action` on `+X`, the
+Vicinae launcher on `+V`) and 5 for Mudeer's stock plain Meta. Meta+Shift is
+avoided throughout.
 
 For splits finer than a half, enable **sequential tiling** in the Kwin script
 options (System Settings → Kwin Scripts → Mudeer). A second tile press within 1s
