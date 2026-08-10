@@ -9,6 +9,39 @@
 
 #define MIRYOKU_ALPHAS_COLEMAKDH
 
+// TILE: an 11th layer for Mudeer (KDE Plasma window tiling). Miryoku's layer
+// list is overridable -- miryoku_babel/miryoku_layer_list.h is guarded by
+// `#if !defined (MIRYOKU_LAYER_LIST)` -- so this replaces the stock list
+// wholesale instead of stealing EXTRA or TAP. TILE is appended LAST: the
+// pmw3610 driver hardcodes layer numbers (automouse 4 = NAV, scroll 5 = MOUSE,
+// snipe 6 = MEDIA), so no existing index may shift.
+#define MIRYOKU_LAYER_LIST \
+MIRYOKU_X(BASE,   "Base") \
+MIRYOKU_X(EXTRA,  "Extra") \
+MIRYOKU_X(TAP,    "Tap") \
+MIRYOKU_X(BUTTON, "Button") \
+MIRYOKU_X(NAV,    "Nav") \
+MIRYOKU_X(MOUSE,  "Mouse") \
+MIRYOKU_X(MEDIA,  "Media") \
+MIRYOKU_X(NUM,    "Num") \
+MIRYOKU_X(SYM,    "Sym") \
+MIRYOKU_X(FUN,    "Fun") \
+MIRYOKU_X(TILE,   "Tile")
+
+#define U_BASE   0
+#define U_EXTRA  1
+#define U_TAP    2
+#define U_BUTTON 3
+#define U_NAV    4
+#define U_MOUSE  5
+#define U_MEDIA  6
+#define U_NUM    7
+#define U_SYM    8
+#define U_FUN    9
+#define U_TILE   10
+
+#define MIRYOKU_LAYERMAPPING_TILE MIRYOKU_MAPPING
+
 // Clipboard: use Ctrl-based binds (Ctrl+C/V/X/Z/Y) instead of the Miryoku
 // COMMON default (Ctrl+Insert / Shift+Insert), which macOS ignores. Drives the
 // BUTTON-layer U_CUT/U_CPY/U_PST/U_UND/U_RDO keys. Cross-OS given the user's
@@ -24,17 +57,27 @@
 #define U_LT_Z(LAYER, TAP) &u_lt_z LAYER TAP
 #define U_LT_SL(LAYER, TAP) &u_lt_sl LAYER TAP
 
+// Mudeer tile shortcut: Meta+Alt + key. Deliberately only TWO modifiers -- that
+// leaves Shift and Ctrl free as the vertical dimension (see the TILE layer
+// below). Base picked by auditing ~/.config/kglobalshortcutsrc across all 45
+// combos: Meta+Alt collides once (plasmashell cycle-panels on Meta+Alt+P),
+// against 3 for Meta+Ctrl (kwin Activate Window Demanding Attention on +A,
+// plasmashell clipboard_action on +X, the Vicinae launcher on +V) and 5 for
+// Mudeer's stock Meta. Meta+Shift is avoided throughout.
+#define U_TIL(K) &kp LG(LA(K))
+
 // Base override = Colemak-DH with two thumb tweaks (Charybdis-style):
 //   * rightmost/inner left thumb (was Mouse/Tab) -> FUN, still taps Tab
 //     (the Mouse layer is only movement keys, redundant with the trackball)
-//   * right-outer thumb (was FUN/Del) -> plain Delete
+//   * right-outer thumb (was FUN/Del) -> TILE hold (see below). Delete moved to
+//     the FUN layer's Bspc thumb; NAV still has it on this same key.
 // Mouse buttons stay on Z and / (U_LT(U_BUTTON, ...)); everything else is the
 // stock Colemak-DH base.
 #define MIRYOKU_LAYER_BASE \
 &kp Q,             &kp W,             &kp F,             &kp P,             &kp B,             &kp J,             &kp L,             &kp U,             &kp Y,             &kp SQT,           \
 U_MT_L(LGUI, A),   U_MT_L(LALT, R),   U_MT_L(LCTRL, S),  U_MT_L(LSHFT, T),  &kp G,             &kp M,             U_MT_R(LSHFT, N),  U_MT_R(LCTRL, E),  U_MT_R(LALT, I),   U_MT_R(LGUI, O),   \
 U_LT_Z(U_BUTTON, Z),U_MT(RALT, X),    &kp C,             &kp D,             &kp V,             &kp K,             &kp H,             &kp COMMA,         U_MT(RALT, DOT),   U_LT_SL(U_BUTTON, SLASH),\
-U_NP,              U_NP,              U_LT(U_MEDIA, ESC),U_LT(U_NAV, SPACE),U_LT(U_FUN, TAB),  U_LT(U_SYM, RET),  U_LT(U_NUM, BSPC), &kp DEL,           U_NP,              U_NP
+U_NP,              U_NP,              U_LT(U_MEDIA, ESC),U_LT(U_NAV, SPACE),U_LT(U_FUN, TAB),  U_LT(U_SYM, RET),  U_LT(U_NUM, BSPC), &mo U_TILE,        U_NP,              U_NP
 
 // NAV (hold Space) <- Charybdis L2: arrows / paging + left-hand mods
 #define MIRYOKU_LAYER_NAV \
@@ -59,12 +102,14 @@ U_NP,               U_NP,               &kp LBRC,           &kp RBRC,           
 
 // FUN (hold Tab) = stock Miryoku FUN mirrored left<->right, so the F-keys sit
 // on the RIGHT hand (FUN is held by the left thumb, freeing the right to press
-// them). Just the default MIRYOKU_ALTERNATIVES_FUN flipped column-for-column.
+// them). Just the default MIRYOKU_ALTERNATIVES_FUN flipped column-for-column,
+// except the Bspc thumb, which is Delete now that the base layer's Del key
+// became the TILE hold.
 #define MIRYOKU_LAYER_FUN \
 U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              &kp PSCRN,         &kp F9,            &kp F8,            &kp F7,            &kp F12,           \
 &kp LGUI,          &kp LALT,          &kp LCTRL,         &kp LSHFT,         U_NA,              &kp SLCK,          &kp F6,            &kp F5,            &kp F4,            &kp F11,           \
 U_NA,              &kp RALT,          &u_to_U_MEDIA,     &u_to_U_FUN,       U_NA,              &kp PAUSE_BREAK,   &kp F3,            &kp F2,            &kp F1,            &kp F10,           \
-U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp TAB,           &kp SPACE,         &kp K_APP,         U_NP,              U_NP
+U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp TAB,           &kp DEL,           &kp K_APP,         U_NP,              U_NP
 
 // MOUSE layer is transparent: it exists only as the trackball's scroll layer
 // (its movement keys are useless with a trackball). Comma on BUTTON latches it
@@ -85,3 +130,35 @@ U_UND,              U_CUT,              U_CPY,              U_PST,              
 &kp LGUI,           &kp LALT,           &kp LCTRL,          &kp LSHFT,          U_NU,               U_NU,               &kp LSHFT,          &kp LCTRL,          &kp LALT,           &kp LGUI,          \
 U_UND,              &mo U_MOUSE,        U_CPY,              U_PST,              U_RDO,              U_RDO,              U_PST,              &tog U_MOUSE,       &mo U_MOUSE,        U_UND,             \
 U_NP,               U_NP,               U_BTN2,             U_BTN1,             U_BTN3,             U_BTN3,             U_BTN1,             U_BTN2,             U_NP,               U_NP
+
+// TILE (hold either pinky-bottom key: left = position 30, right = position 38)
+// = Mudeer window tiling. Held by one pinky, driven by the other hand, so the
+// three alpha rows are TRANSLATED not mirrored -- the leftmost key of either
+// half is the leftmost tile on screen, on both hands:
+//
+//   Q ¼far-L   W ¼mid-L   F ¼mid-R   P ¼far-R   B whole
+//   A ⅔left    R ⅓left    S ⅓center  T ⅓right   G ⅔right
+//   Z ¾left    X ½left    C ½center  D ½right   V ¾right
+//
+// Rows go finest (quarters) to widest (halves + three-quarters); each row is
+// symmetric about its middle, and the outer key of a row is the "grown"
+// version of the one beside it -- the spatial form of Mudeer's Shift-to-grow.
+//
+// Both halves emit the SAME keycode for a given tile (the left half's Colemak
+// legends), so one KDE shortcut serves both hands and none of them land on
+// punctuation. Vertical position rides on the two modifiers U_TIL deliberately
+// left free, on the thumbs of both hands:
+//   plain      -> full height   (Meta+Alt+key)
+//   + Shift    -> top half      (Meta+Alt+Shift+key)
+//   + Ctrl     -> bottom half   (Meta+Alt+Ctrl+key)
+// The fixed Alt on position 31 is simply part of the prefix here, so pressing
+// it alongside a tile is harmless.
+// Finer vertical splits come from Mudeer's sequential tiling (enable it in the
+// Kwin script options): a second tile press within 1s splits the first one
+// vertically by the second tile's horizontal slot, so R then X = left third,
+// top half; R then S = left third, middle vertical third.
+#define MIRYOKU_LAYER_TILE \
+U_TIL(Q),           U_TIL(W),           U_TIL(F),           U_TIL(P),           U_TIL(B),           U_TIL(Q),           U_TIL(W),           U_TIL(F),           U_TIL(P),           U_TIL(B),          \
+U_TIL(A),           U_TIL(R),           U_TIL(S),           U_TIL(T),           U_TIL(G),           U_TIL(A),           U_TIL(R),           U_TIL(S),           U_TIL(T),           U_TIL(G),          \
+U_TIL(Z),           U_TIL(X),           U_TIL(C),           U_TIL(D),           U_TIL(V),           U_TIL(Z),           U_TIL(X),           U_TIL(C),           U_TIL(D),           U_TIL(V),          \
+U_NP,               U_NP,               U_NU,               &kp LSHFT,          &kp LCTRL,          &kp LSHFT,          &kp LCTRL,          U_NU,               U_NP,               U_NP

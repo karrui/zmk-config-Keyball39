@@ -31,7 +31,7 @@ layers:
   - {t: ',', s: <}
   - {t: ., h: '$$mdi:apple-keyboard-option$$', s: '>'}
   - {t: /, h: Button, s: '?'}
-  - $$mdi:apple-keyboard-control$$
+  - Tile
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - {t: '$$mdi:keyboard-esc$$', h: Media}
@@ -39,7 +39,7 @@ layers:
   - {t: '$$mdi:keyboard-tab$$', h: Fun}
   - {t: '$$mdi:keyboard-return$$', h: Sym}
   - {t: '$$mdi:backspace$$', h: Num}
-  - $$mdi:backspace-reverse-outline$$
+  - Tile
   Extra:
   - Q
   - W
@@ -71,7 +71,7 @@ layers:
   - {t: ',', s: <}
   - {t: ., h: '$$mdi:apple-keyboard-option$$', s: '>'}
   - {t: /, h: Button, s: '?'}
-  - $$mdi:apple-keyboard-control$$
+  - Tile
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - {t: '$$mdi:keyboard-esc$$', h: Media}
@@ -111,7 +111,7 @@ layers:
   - {t: ',', s: <}
   - {t: ., s: '>'}
   - {t: /, s: '?'}
-  - $$mdi:apple-keyboard-control$$
+  - Tile
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - $$mdi:keyboard-esc$$
@@ -151,7 +151,7 @@ layers:
   - {t: Mouse, h: toggle}
   - Mouse
   - {t: Ctl+Z, type: held alternate}
-  - $$mdi:apple-keyboard-control$$
+  - Tile
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - '&mkp MB2'
@@ -191,7 +191,7 @@ layers:
   - PG DN
   - PG UP
   - END
-  - $$mdi:apple-keyboard-control$$
+  - Tile
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -231,7 +231,7 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {type: held alternate}
   - {type: held alternate}
-  - $$mdi:apple-keyboard-control$$
+  - Tile
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - {t: '$$mdi:transfer$$', type: trans}
@@ -271,7 +271,7 @@ layers:
   - {h: '2', s: '&u_macro_u_bt_sel_1'}
   - {h: '3', s: '&u_macro_u_bt_sel_2'}
   - {h: '4', s: '&u_macro_u_bt_sel_3'}
-  - $$mdi:apple-keyboard-control$$
+  - Tile
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - {t: '$$mdi:minus-circle-outline$$', type: held}
@@ -311,7 +311,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:apple-keyboard-control$$
+  - Tile
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - {t: '[', s: '{'}
@@ -351,7 +351,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:apple-keyboard-control$$
+  - Tile
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - '{'
@@ -391,12 +391,52 @@ layers:
   - F2
   - F1
   - F10
-  - $$mdi:apple-keyboard-control$$
+  - Tile
   - $$mdi:apple-keyboard-option$$
   - LGUI
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - $$mdi:keyboard-tab$$
-  - $$mdi:keyboard-space$$
+  - $$mdi:backspace-reverse-outline$$
   - {t: APP, type: held alternate}
+  Tile:
+  - Gui+Alt+Q
+  - Gui+Alt+W
+  - Gui+Alt+F
+  - Gui+Alt+P
+  - Gui+Alt+B
+  - Gui+Alt+Q
+  - Gui+Alt+W
+  - Gui+Alt+F
+  - Gui+Alt+P
+  - Gui+Alt+B
+  - Gui+Alt+A
+  - Gui+Alt+R
+  - Gui+Alt+S
+  - Gui+Alt+T
+  - Gui+Alt+G
+  - Gui+Alt+A
+  - Gui+Alt+R
+  - Gui+Alt+S
+  - Gui+Alt+T
+  - Gui+Alt+G
+  - {t: Gui+Alt+Z, type: held alternate}
+  - {t: Gui+Alt+X, type: held alternate}
+  - Gui+Alt+C
+  - Gui+Alt+D
+  - Gui+Alt+V
+  - Gui+Alt+Z
+  - Gui+Alt+X
+  - Gui+Alt+C
+  - {t: Gui+Alt+D, type: held alternate}
+  - {t: Gui+Alt+V, type: held alternate}
+  - {t: Tile, type: held}
+  - $$mdi:apple-keyboard-option$$
+  - LGUI
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
+  - {t: '$$mdi:apple-keyboard-shift$$', type: held alternate}
+  - {t: '$$mdi:apple-keyboard-control$$', type: held alternate}
+  - {t: '$$mdi:apple-keyboard-shift$$', type: held alternate}
+  - {t: '$$mdi:apple-keyboard-control$$', type: held alternate}
+  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
