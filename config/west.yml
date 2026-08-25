@@ -11,30 +11,32 @@ manifest:
     - name: M165437
       url-base: https://github.com/M165437
   projects:
-    # ZMK 0.4 stack (Zephyr 3.7 / LVGL 9). Required by the display modules
+    # Known-good ZMK 0.4 snapshot (Zephyr 4.1 / LVGL 9), pinned with every
+    # external module so a future upstream push cannot silently break builds.
+    # Required by the display modules
     # (Prospector + nice-view-gem). Split transport is BLE: the dongle is the
     # BLE central and speaks HID to the host over USB; both halves are BLE
     # peripherals. (Was damex ESB — reverted; ESB lost the Prospector dongle
     # screens and drained the halves harder than BLE.)
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: 268b1b1e82150460f00fd701bcd08583d5c75d29
       import: app/west.yml
     # Prospector fork with the BLE "new status" screens (Operator/Field layouts
     # + native zmk_split_central_status_changed observer under CONFIG_ZMK_BLE).
     - name: zmk-prospector
       remote: kmobs
-      revision: blenewstatus
+      revision: 01dd10ab0bde9fecc1143d74ab06c193c9df52c2
     # nice!view "gem" widgets for the halves (LVGL 9 / ZMK 0.4).
     - name: nice-view-gem
       remote: M165437
-      revision: main
+      revision: 0a50fe209d929c916c5664c6affd0f4977c6b012
     - name: zmk-pmw3610-driver
       remote: tangbonze
-      revision: main
+      revision: 9c442063c4c63cad9058707d7118c4fbc7fd97d2
     - name: miryoku_zmk
       remote: manna-harbour
-      revision: master
+      revision: 559aa4beae75cb3206ab411b7da2adb9665c6896
       path: miryoku
   self:
     path: config

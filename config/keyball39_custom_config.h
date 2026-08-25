@@ -1,11 +1,29 @@
 // Keyball39 Miryoku customization
 // https://github.com/manna-harbour/miryoku_zmk
+#include <dt-bindings/zmk/keyball39.h>
+//
+// keymap-drawer expands this local file but does not follow module-owned
+// angle-bracket includes. Keep guarded fallbacks here so its parser sees the
+// same numeric layer parameters. The firmware gets these from the shared header.
+#ifndef U_BASE
+#define U_BASE   0
+#define U_EXTRA  1
+#define U_TAP    2
+#define U_BUTTON 3
+#define U_NAV    4
+#define U_MOUSE  5
+#define U_MEDIA  6
+#define U_NUM    7
+#define U_SYM    8
+#define U_FUN    9
+#define U_TILE   10
+#endif
 //
 // Base = Colemak-DH with Miryoku's GACS home-row mods (identical to the user's
 // Charybdis Nano). NAV/NUM/SYM layer contents are transcribed from the
-// Charybdis QMK keymap (charybdis_nano.layout.json). MEDIA and FUN keep Miryoku
-// defaults (MEDIA adds Bluetooth control the wireless board needs; its RGB keys
-// are inert no-ops on this board). BUTTON adds the trackball scroll chord.
+// Charybdis QMK keymap (charybdis_nano.layout.json). MEDIA adds explicit
+// recovery, power, and Bluetooth controls; FUN keeps the Miryoku layout with a
+// mirrored F-key cluster. BUTTON adds the trackball scroll chord.
 
 #define MIRYOKU_ALPHAS_COLEMAKDH
 
@@ -13,8 +31,8 @@
 // list is overridable -- miryoku_babel/miryoku_layer_list.h is guarded by
 // `#if !defined (MIRYOKU_LAYER_LIST)` -- so this replaces the stock list
 // wholesale instead of stealing EXTRA or TAP. TILE is appended LAST: the
-// pmw3610 driver hardcodes layer numbers (automouse 4 = NAV, scroll 5 = MOUSE,
-// snipe 6 = MEDIA), so no existing index may shift.
+// dongle input listener uses these indices for scroll and snipe, so no existing
+// index may shift. The shared constants live in dt-bindings/zmk/keyball39.h.
 #define MIRYOKU_LAYER_LIST \
 MIRYOKU_X(BASE,   "Base") \
 MIRYOKU_X(EXTRA,  "Extra") \
@@ -28,18 +46,6 @@ MIRYOKU_X(SYM,    "Sym") \
 MIRYOKU_X(FUN,    "Fun") \
 MIRYOKU_X(TILE,   "Tile")
 
-#define U_BASE   0
-#define U_EXTRA  1
-#define U_TAP    2
-#define U_BUTTON 3
-#define U_NAV    4
-#define U_MOUSE  5
-#define U_MEDIA  6
-#define U_NUM    7
-#define U_SYM    8
-#define U_FUN    9
-#define U_TILE   10
-
 #define MIRYOKU_LAYERMAPPING_TILE MIRYOKU_MAPPING
 
 // Clipboard: use Ctrl-based binds (Ctrl+C/V/X/Z/Y) instead of the Miryoku
@@ -50,7 +56,7 @@ MIRYOKU_X(TILE,   "Tile")
 
 // Hold-tap tuning (Charybdis-style). Behaviors defined in keyball39.keymap:
 //   u_mt_l / u_mt_r : per-hand home-row mods (balanced + 250ms + chordal hold)
-//   u_lt_z          : Z pointer key, hold-preferred @120ms (instant Z+X chord)
+//   u_lt_z          : Z pointer key, balanced @175ms
 //   u_lt_sl         : / pointer key, balanced @175ms, unrestricted
 #define U_MT_L(MOD, TAP)   &u_mt_l MOD TAP
 #define U_MT_R(MOD, TAP)   &u_mt_r MOD TAP
@@ -110,6 +116,17 @@ U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA
 &kp LGUI,          &kp LALT,          &kp LCTRL,         &kp LSHFT,         U_NA,              &kp SLCK,          &kp F6,            &kp F5,            &kp F4,            &kp F11,           \
 U_NA,              &kp RALT,          &u_to_U_MEDIA,     &u_to_U_FUN,       U_NA,              &kp PAUSE_BREAK,   &kp F3,            &kp F2,            &kp F1,            &kp F10,           \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp TAB,           &kp DEL,           &kp K_APP,         U_NP,              U_NP
+
+// MEDIA (hold Esc) keeps the useful media/endpoint controls and replaces inert
+// RGB slots with recovery controls. Bootloader and reset are mirrored because
+// those behaviors act on the physical half that emitted them. Profile 4 fills
+// the fifth ZMK Bluetooth profile. Soft-off is deliberately absent so a sleeping
+// half always wakes with one keypress.
+#define MIRYOKU_LAYER_MEDIA \
+&bootloader,        &sys_reset,        &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              U_NA,              &bt BT_CLR_ALL,    &bt BT_CLR,        &sys_reset,        &bootloader,       \
+&kp LGUI,           &kp LALT,          &kp LCTRL,         &kp LSHFT,         U_NA,              U_EP_TOG,          &kp C_PREV,        &kp C_VOL_DN,      &kp C_VOL_UP,      &kp C_NEXT,        \
+U_NA,               &kp RALT,          &u_to_U_FUN,       &u_to_U_MEDIA,     &bt BT_SEL 4,      &u_out_tog,        &u_bt_sel_0,       &u_bt_sel_1,       &u_bt_sel_2,       &u_bt_sel_3,       \
+U_NP,               U_NP,              U_NA,              U_NA,              U_NA,              &kp C_STOP,        &kp C_PP,          &kp C_MUTE,        U_NP,              U_NP
 
 // MOUSE layer is transparent: it exists only as the trackball's scroll layer
 // (its movement keys are useless with a trackball). Comma on BUTTON latches it

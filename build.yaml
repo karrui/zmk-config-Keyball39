@@ -9,7 +9,7 @@ include:
     cmake-args: -DCONFIG_ZMK_STUDIO=y
     artifact-name: keyball39_dongle
   # BLANK_ON_IDLE via cmake-args (merged last) to override gem's forced =n and
-  # power down the OLED when idle.
+  # power down the nice!view memory LCD when idle.
   - board: nice_nano//zmk
     shield: keyball39_left nice_view_adapter nice_view_gem
     cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n -DCONFIG_ZMK_DISPLAY_BLANK_ON_IDLE=y

@@ -3,19 +3,20 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - ".github/workflows/keymap_draser.yml"
+      - ".github/workflows/keymap_drawer.yml"
       - "keymap_drawer.config.yaml"
       - "config/**"
+      - "include/**"
 
 jobs:
   draw:
-    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
+    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@3a4ca7e060a54ba700d3e7b6a43cb0b9cec347d2
     permissions:
       contents: write
     with:
       commit_message: "[Draw] ${{ github.event.head_commit.message }}"
       amend_commit: false
-      install_branch: "main"
+      install_branch: "3a4ca7e060a54ba700d3e7b6a43cb0b9cec347d2"
       keymap_patterns: "config/*.keymap"
       json_path: "config"
       config_path: "keymap_drawer.config.yaml" # config file, ignored if not exists
