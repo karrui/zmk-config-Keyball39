@@ -6,32 +6,32 @@ here (see `MIRYOKU.md` and `config/keyball39.keymap`).
 
 ## Version basis (read first)
 
-This repo pins **ZMK `v0.3`** (`config/west.yml`, `revision: v0.3`) plus three
-modules: `zmk-pmw3610-driver` (trackball), `prospector-zmk-module` (dongle
-display), `miryoku_zmk` (layout engine).
+This repo pins a known-good **ZMK 0.4/main snapshot** in `config/west.yml`, plus
+`zmk-pmw3610-driver` (trackball), `zmk-prospector` (dongle display),
+`nice-view-gem` (half displays), and `miryoku_zmk` (layout engine).
 
-Every behavior and input processor below was verified to exist **in the `v0.3`
-tag**, not just mainline, by checking the tag's source tree:
+This catalogue began against ZMK v0.3. The active configuration now uses the
+pinned 0.4 snapshot; verify API details against that exact revision before
+adopting an idea. The features listed below are present in the pinned stack:
 
-- Behaviors present at `v0.3`: tap-dance, caps-word, mod-morph, sticky-key,
+- Behaviors present: tap-dance, caps-word, mod-morph, sticky-key,
   key-repeat, macro (+ one/two-param), bluetooth, outputs, toggle-layer,
   to-layer, momentary-layer, key-toggle. Verified in
   [`app/dts/bindings/behaviors` @ v0.3](https://github.com/zmkfirmware/zmk/tree/v0.3/app/dts/bindings/behaviors).
-- Input processors present at `v0.3`: scaler, transform, temp-layer,
+- Input processors present: scaler, transform, temp-layer,
   code-mapper, behaviors. Verified in
   [`app/dts/bindings/input_processors` @ v0.3](https://github.com/zmkfirmware/zmk/tree/v0.3/app/dts/bindings/input_processors)
   and [`app/dts/input/processors` @ v0.3](https://github.com/zmkfirmware/zmk/tree/v0.3/app/dts/input/processors).
-- **Conditional layers** (tri-layer) is confirmed present at `v0.3`
+- **Conditional layers** (tri-layer) is present
   ([`zmk,conditional-layers.yaml` @ v0.3](https://github.com/zmkfirmware/zmk/blob/v0.3/app/dts/bindings/zmk%2Cconditional-layers.yaml)).
 - **Auto-shift** is **not** a mainline behavior in any ZMK version — it must be
   hand-rolled from hold-tap or parameterised macros, or pulled from a community
   module. See its section for the caveat.
 
-The input-processor subsystem is fully present in `v0.3` — this repo already
+The input-processor subsystem is present — this repo already
 uses `zip_xy_to_scroll_mapper`, `zip_scroll_scaler`, and `zip_xy_scaler` in
-`config/boards/shields/keyball_nano/keyball39_dongle.overlay`, and has
-`zip_temp_layer` present-but-commented. Nothing in the "input processors"
-section below requires a newer ZMK than what is pinned.
+`boards/shields/keyball_nano/keyball39_dongle.overlay`. Automouse is deliberately
+absent rather than left as commented code.
 
 ---
 
@@ -395,16 +395,17 @@ MEDIA. `&out` is largely moot here (the dongle owns the USB/BLE endpoint).
 
 # Display widgets (brief)
 
-This build already loads `prospector-zmk-module` on the dongle
+This build already loads `zmk-prospector` on the dongle
 (`prospector_adapter`) and `nice_view` on the halves. The Prospector module
 provides a large dongle-side status display (layers, battery, connection); nice!
-view gives the per-half OLED. There is no *trackball-specific* widget in core ZMK
-worth wiring up here — pointer state (scroll/snipe layer) is already legible via
-the active-layer indicator since your trackball modes are layers.
-Source: [prospector-zmk-module](https://github.com/carrefinho/prospector-zmk-module),
+view gives the per-half memory LCD. There is no *trackball-specific* widget in
+core ZMK worth wiring up here. Live layer state, including scroll/snipe, is
+visible on the dongle; the peripheral Gem compatibility shim reports Base
+because the halves do not receive the central keymap state.
+Source: [zmk-prospector](https://github.com/kmobs/zmk-prospector),
 [ZMK displays](https://zmk.dev/docs/features/displays).
 
-**Verdict: no action** — your display stack already surfaces the layer state that
+**Verdict: no action** — the dongle display already surfaces the layer state that
 doubles as trackball-mode state.
 
 ---

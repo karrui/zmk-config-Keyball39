@@ -1,19 +1,48 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/zmk/keyball39.h>
 #include <physical_layouts.dtsi>
+#include <input/processors.dtsi>
 
 / {
     chosen {
-        zephyr,display = &oled;
-	zmk,physical-layout = &keyball_physical_layout;
+        zmk,kscan = &mock_kscan;
+        zmk,physical-layout = &keyball_physical_layout;
     };
 
-	keyball_physical_layout: keyball_physical_layout {
+    mock_kscan: mock_kscan_0 {
+        compatible = "zmk,kscan-mock";
+        columns = <0>;
+        rows = <0>;
+        events = <0>;
+    };
+
+    nice_view_spi: dummy_spi {
+    };
+
+    pro_micro: dummy_pro_micro {
+        gpio-controller;
+        #gpio-cells = <2>;
+    };
+
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <12>;
+        rows = <4>;
+        map = <
+            RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4)                  RC(0,10) RC(0,9) RC(0,8) RC(0,7) RC(0,6)
+            RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4)                  RC(1,10) RC(1,9) RC(1,8) RC(1,7) RC(1,6)
+            RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)                  RC(2,10) RC(2,9) RC(2,8) RC(2,7) RC(2,6)
+            RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(3,11) RC(3,10)                         RC(3,6)
+        >;
+    };
+
+    keyball_physical_layout: keyball_physical_layout {
         compatible = "zmk,physical-layout";
         display-name = "Default";
         transform = <&default_transform>;
-        kscan = <&kscan0>;
+        kscan = <&mock_kscan>;
 
-        keys  //                     w   h    x    y     rot    rx    ry
+        keys
             = <&key_physical_attrs 100 100    0   38       0     0     0>
             , <&key_physical_attrs 100 100  100   13       0     0     0>
             , <&key_physical_attrs 100 100  200    0       0     0     0>
@@ -56,75 +85,38 @@
             ;
     };
 
-    default_transform: keymap_transform_0 {
-		compatible = "zmk,matrix-transform";
-        columns = <12>;
-        rows = <4>;
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
 
-        map = <
-            RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4)                  RC(0,10) RC(0,9) RC(0,8) RC(0,7) RC(0,6)
-            RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4)                  RC(1,10) RC(1,9) RC(1,8) RC(1,7) RC(1,6)
-            RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4)                  RC(2,10) RC(2,9) RC(2,8) RC(2,7) RC(2,6)
-            RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(3,11) RC(3,10)                         RC(3,6)
-        >;
-    };
-	
-    kscan0: kscan {
-        compatible = "zmk,kscan-gpio-matrix";
-        label = "KSCAN";
-
-        // Required for a key press to wake either half from deep sleep.
-        // Without it, a sleeping half could not be woken and needed a
-        // power-cycle. ZMK recommends this on all kscan nodes regardless.
-        wakeup-source;
-
-        diode-direction = "col2row";
-		row-gpios
-			= <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            ;
-    };
-};    
-
-&pinctrl {
-    i2c0_default: i2c0_default {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
-                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+        trackball_split: trackball@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
         };
     };
 
-    i2c0_sleep: i2c0_sleep {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
-                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
-            low-power-enable;
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball_split>;
+        // Automouse is intentionally disabled: brushing the ball while typing
+        // must never activate a layer.
+
+        // Trackball modifiers: hold Z or / (BUTTON = layer 3) -> snipe; add X
+        // or . (which fire &mo U_MOUSE, layer 5) -> scroll. Children are tried
+        // in order and stop at the first match, so with BUTTON(3) and MOUSE(5)
+        // both active (Z+X), `scroll` wins over `snipe`.
+        scroll {
+            layers = <U_MOUSE>;
+            // Map ball movement to wheel, then slow the wheel to 1/3 (smooth
+            // scrolling accumulates the fractions). Raise the divisor to
+            // scroll slower, lower it for faster; only affects scroll, not the
+            // cursor.
+            input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 3>;
         };
-    };
-};
 
-&i2c0 {
-    status = "okay";
-    compatible = "nordic,nrf-twi";
-    pinctrl-0 = <&i2c0_default>;
-    pinctrl-1 = <&i2c0_sleep>;
-    pinctrl-names = "default", "sleep";
-
-    oled: ssd1306@3c {
-        compatible = "solomon,ssd1306fb";
-        reg = <0x3c>;
-        width = <128>;
-        height = <32>;
-        segment-offset = <0>;
-        page-offset = <0>;
-        display-offset = <0>;
-        multiplex-ratio = <31>;
-        segment-remap;
-        com-invdir;
-        com-sequential;
-        inversion-on;
-        prechargep = <0x22>;
+        snipe {
+            layers = <U_BUTTON>;
+            input-processors = <&zip_xy_scaler 1 2>;
+        };
     };
 };
