@@ -117,13 +117,13 @@ U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA
 U_NA,              &kp RALT,          &u_to_U_MEDIA,     &u_to_U_FUN,       U_NA,              &kp PAUSE_BREAK,   &kp F3,            &kp F2,            &kp F1,            &kp F10,           \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp TAB,           &kp DEL,           &kp K_APP,         U_NP,              U_NP
 
-// MEDIA (hold Esc) keeps the useful media/endpoint controls and replaces the
-// board's inert RGB slots with guarded system controls. Bootloader and reset are
-// mirrored because those behaviors act on the physical half that emitted them.
-// Soft-off is a two-second hold (configured in keyball39.keymap) and available
-// from either hand. Profile 4 fills the fifth ZMK Bluetooth profile.
+// MEDIA (hold Esc) keeps the useful media/endpoint controls and replaces inert
+// RGB slots with recovery controls. Bootloader and reset are mirrored because
+// those behaviors act on the physical half that emitted them. Profile 4 fills
+// the fifth ZMK Bluetooth profile. Soft-off is deliberately absent so a sleeping
+// half always wakes with one keypress.
 #define MIRYOKU_LAYER_MEDIA \
-&bootloader,        &sys_reset,        &u_to_U_EXTRA,     &u_to_U_BASE,      &soft_off,         &soft_off,         &bt BT_CLR_ALL,    &bt BT_CLR,        &sys_reset,        &bootloader,       \
+&bootloader,        &sys_reset,        &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              U_NA,              &bt BT_CLR_ALL,    &bt BT_CLR,        &sys_reset,        &bootloader,       \
 &kp LGUI,           &kp LALT,          &kp LCTRL,         &kp LSHFT,         U_NA,              U_EP_TOG,          &kp C_PREV,        &kp C_VOL_DN,      &kp C_VOL_UP,      &kp C_NEXT,        \
 U_NA,               &kp RALT,          &u_to_U_FUN,       &u_to_U_MEDIA,     &bt BT_SEL 4,      &u_out_tog,        &u_bt_sel_0,       &u_bt_sel_1,       &u_bt_sel_2,       &u_bt_sel_3,       \
 U_NP,               U_NP,              U_NA,              U_NA,              U_NA,              &kp C_STOP,        &kp C_PP,          &kp C_MUTE,        U_NP,              U_NP

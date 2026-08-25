@@ -80,9 +80,3 @@
 &u_mt {
     quick-tap-ms = <200>;
 };
-
-// Guard against accidental shutdowns while still making soft-off reachable on
-// both hands from MEDIA. A hardware reset is the only wake source after this.
-&soft_off {
-    hold-time-ms = <2000>;
-};

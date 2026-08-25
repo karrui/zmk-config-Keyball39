@@ -9,7 +9,7 @@ External modules are fetched by west and pinned to known-good commits in
 ## Repository structure
 
 - `boards/shields/keyball_nano/` — Keyball39 hardware, dongle, and per-part config
-- `config/keyball39.keymap` — custom hold-tap behavior and soft-off guard
+- `config/keyball39.keymap` — custom hold-tap behavior
 - `config/keyball39_custom_config.h` — layer contents and Miryoku overrides
 - `config/mapping/39/keyball39.h` — 39-key physical mapping
 - `include/dt-bindings/zmk/keyball39.h` — layer indices shared by keymap and pointer listener
@@ -51,8 +51,8 @@ deliberately.
 
 ## Trackball behavior
 
-The PMW3610 on the right half emits raw pointer events across the split. The
-dongle is the only place that applies layer-dependent processing:
+The PMW3610 keeps its layer-aware scroll/snipe modes and sensor tuning on the
+right half. The dongle then applies the corresponding central processor chains:
 
 - BASE and most layers — normal cursor movement
 - BUTTON (`3`) — snipe at 1:2 scaling
@@ -70,12 +70,12 @@ physical half can be targeted:
 
 | Left top row | Right top row |
 |---|---|
-| Bootloader · Reset · Extra · Base · Soft-off | Soft-off · Clear all BT · Clear current BT · Reset · Bootloader |
+| Bootloader · Reset · Extra · Base · — | — · Clear all BT · Clear current BT · Reset · Bootloader |
 
-Soft-off requires a two-second hold. It is configured on every split part, and
-a hardware reset is the only wake source afterward. Bluetooth profiles 0–3 are
-on the right lower row; profile 4 is on the left inner lower key. The normal
-endpoint toggle, external-power toggle, and media controls remain available.
+Soft-off is deliberately not enabled: after normal deep sleep, either half wakes
+with a single keypress. Bluetooth profiles 0–3 are on the right lower row;
+profile 4 is on the left inner lower key. The normal endpoint toggle,
+external-power toggle, and media controls remain available.
 
 ## TILE layer
 
