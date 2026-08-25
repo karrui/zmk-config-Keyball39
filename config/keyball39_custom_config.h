@@ -2,6 +2,23 @@
 // https://github.com/manna-harbour/miryoku_zmk
 #include <dt-bindings/zmk/keyball39.h>
 //
+// keymap-drawer expands this local file but does not follow module-owned
+// angle-bracket includes. Keep guarded fallbacks here so its parser sees the
+// same numeric layer parameters. The firmware gets these from the shared header.
+#ifndef U_BASE
+#define U_BASE   0
+#define U_EXTRA  1
+#define U_TAP    2
+#define U_BUTTON 3
+#define U_NAV    4
+#define U_MOUSE  5
+#define U_MEDIA  6
+#define U_NUM    7
+#define U_SYM    8
+#define U_FUN    9
+#define U_TILE   10
+#endif
+//
 // Base = Colemak-DH with Miryoku's GACS home-row mods (identical to the user's
 // Charybdis Nano). NAV/NUM/SYM layer contents are transcribed from the
 // Charybdis QMK keymap (charybdis_nano.layout.json). MEDIA adds explicit
