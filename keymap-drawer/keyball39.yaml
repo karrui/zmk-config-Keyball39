@@ -245,8 +245,8 @@ layers:
   - {t: '$$mdi:backup-restore$$', type: bootloader}
   - '&u_to_U_EXTRA'
   - '&u_to_U_BASE'
-  - '&soft_off'
-  - '&soft_off'
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - BT CLR ALL
   - $$mdi:bluetooth-off$$
   - {t: '$$mdi:backup-restore$$', type: bootloader}
