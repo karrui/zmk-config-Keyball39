@@ -32,7 +32,7 @@ layers:
   - {t: ., h: '$$mdi:apple-keyboard-option$$', s: '>'}
   - {t: /, h: Button, s: '?'}
   - Tile
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:printer-outline$$
   - LGUI
   - {t: '$$mdi:keyboard-esc$$', h: Media}
   - {t: '$$mdi:keyboard-space$$', h: Nav}
@@ -72,7 +72,7 @@ layers:
   - {t: ., h: '$$mdi:apple-keyboard-option$$', s: '>'}
   - {t: /, h: Button, s: '?'}
   - Tile
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:printer-outline$$
   - LGUI
   - {t: '$$mdi:keyboard-esc$$', h: Media}
   - {t: '$$mdi:keyboard-space$$', h: Nav}
@@ -112,7 +112,7 @@ layers:
   - {t: ., s: '>'}
   - {t: /, s: '?'}
   - Tile
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:printer-outline$$
   - LGUI
   - $$mdi:keyboard-esc$$
   - $$mdi:keyboard-space$$
@@ -152,7 +152,7 @@ layers:
   - Mouse
   - {t: Ctl+Z, type: held alternate}
   - Tile
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:printer-outline$$
   - LGUI
   - '&mkp MB2'
   - '&mkp MB1'
@@ -192,7 +192,7 @@ layers:
   - PG UP
   - END
   - Tile
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:printer-outline$$
   - LGUI
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
@@ -232,7 +232,7 @@ layers:
   - {type: held alternate}
   - {type: held alternate}
   - Tile
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:printer-outline$$
   - LGUI
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
@@ -272,7 +272,7 @@ layers:
   - {h: '3', s: '&u_macro_u_bt_sel_2'}
   - {h: '4', s: '&u_macro_u_bt_sel_3'}
   - Tile
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:printer-outline$$
   - LGUI
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -312,7 +312,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - Tile
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:printer-outline$$
   - LGUI
   - {t: '[', s: '{'}
   - {t: ']', s: '}'}
@@ -352,7 +352,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - Tile
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:printer-outline$$
   - LGUI
   - '{'
   - '}'
@@ -392,7 +392,7 @@ layers:
   - F1
   - F10
   - Tile
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:printer-outline$$
   - LGUI
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -432,7 +432,7 @@ layers:
   - {t: Gui+Alt+D, type: held alternate}
   - {t: Gui+Alt+V, type: held alternate}
   - {t: Tile, type: held}
-  - $$mdi:apple-keyboard-option$$
+  - $$mdi:printer-outline$$
   - LGUI
   - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
   - {t: '$$mdi:apple-keyboard-shift$$', type: held alternate}
