@@ -5,11 +5,9 @@
 
 #if IS_ENABLED(CONFIG_ZMK_SPLIT) && !IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 
-// The peripheral half's display widgets (e.g. gem's layer widget) reference
-// keymap state that only lives on the central. Stub these so the peripheral
-// build links. Signatures track ZMK 0.4 (zmk/keymap.h, zmk/behavior_queue.h).
-// If a future ZMK compiles the keymap on peripherals too, these will collide
-// (multiple definition) — delete the file + its config/CMakeLists.txt entry then.
+// Peripheral firmware does not compile ZMK's central keymap implementation,
+// but the PMW3610 driver still references these APIs for layer-aware features.
+// Stub them so the right half links; input processing remains on the dongle.
 int zmk_keymap_layer_activate(zmk_keymap_layer_id_t layer, bool locking) {
     return 0;
 }

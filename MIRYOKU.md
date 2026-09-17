@@ -51,9 +51,9 @@ mv keyball39_miryoku.keymap keyball39.keymap
 
 Then build normally:
 ```bash
-west build -b nice_nano_v2 -s config -- -DSHIELD=keyball39_left nice_view_adapter nice_view
-west build -b nice_nano_v2 -s config -- -DSHIELD=keyball39_right nice_view_adapter nice_view
-west build -b seeeduino_xiao_ble -s config -- -DSHIELD=keyball39_dongle prospector_adapter
+west build -b nice_nano//zmk -s config -- -DSHIELD=keyball39_left
+west build -b nice_nano//zmk -s config -- -DSHIELD=keyball39_right
+west build -b xiao_ble//zmk -s config -- -DSHIELD="keyball39_dongle prospector_adapter"
 ```
 
 Or via the GitHub Actions workflow (build.yaml).
@@ -62,8 +62,8 @@ Or via the GitHub Actions workflow (build.yaml).
 
 Build the Miryoku keymap by specifying it explicitly:
 ```bash
-west build -b nice_nano_v2 -s config \
-  -- -DSHIELD=keyball39_left_nice_view_adapter_nice_view \
+west build -b nice_nano//zmk -s config \
+  -- -DSHIELD=keyball39_left \
   -DCONF_FILE=$(pwd)/config/keyball39_miryoku.keymap \
   -DDTS_FILE=$(pwd)/config/keyball39_miryoku.keymap
 ```
