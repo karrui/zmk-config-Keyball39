@@ -151,8 +151,6 @@ U_NP,               U_NP,               U_BTN2,             U_BTN1,             
 //   plain      -> full height   (Meta+Alt+key)
 //   + Shift    -> top half      (Meta+Alt+Shift+key)
 //   + Ctrl     -> bottom half   (Meta+Alt+Ctrl+key)
-// The fixed Alt on position 31 is simply part of the prefix here, so pressing
-// it alongside a tile is harmless.
 // Finer vertical splits come from Mudeer's sequential tiling (enable it in the
 // Kwin script options): a second tile press within 1s splits the first one
 // vertically by the second tile's horizontal slot, so R then X = left third,

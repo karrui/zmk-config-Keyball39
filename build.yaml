@@ -8,15 +8,14 @@ include:
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
     artifact-name: keyball39_dongle
-  # BLANK_ON_IDLE via cmake-args (merged last) to override gem's forced =n and
-  # power down the OLED when idle.
+  # The halves run headless. The dongle's Prospector is the only display.
   - board: nice_nano//zmk
-    shield: keyball39_left nice_view_adapter nice_view_gem
-    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n -DCONFIG_ZMK_DISPLAY_BLANK_ON_IDLE=y
+    shield: keyball39_left
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     artifact-name: keyball39_left
   - board: nice_nano//zmk
-    shield: keyball39_right nice_view_adapter nice_view_gem
-    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n -DCONFIG_ZMK_DISPLAY_BLANK_ON_IDLE=y
+    shield: keyball39_right
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     artifact-name: keyball39_right
   - board: nice_nano//zmk
     shield: settings_reset

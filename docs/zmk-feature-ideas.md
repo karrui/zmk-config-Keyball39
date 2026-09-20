@@ -395,17 +395,16 @@ MEDIA. `&out` is largely moot here (the dongle owns the USB/BLE endpoint).
 
 # Display widgets (brief)
 
-This build already loads `prospector-zmk-module` on the dongle
-(`prospector_adapter`) and `nice_view` on the halves. The Prospector module
-provides a large dongle-side status display (layers, battery, connection); nice!
-view gives the per-half OLED. There is no *trackball-specific* widget in core ZMK
-worth wiring up here — pointer state (scroll/snipe layer) is already legible via
-the active-layer indicator since your trackball modes are layers.
+This build loads `prospector-zmk-module` on the dongle (`prospector_adapter`).
+The halves run headless to avoid display refresh work and leave status reporting
+to the USB-powered dongle. There is no *trackball-specific* widget in core ZMK
+worth wiring up here. Pointer state is already visible through the Prospector's
+active-layer indicator since the trackball modes are layers.
 Source: [prospector-zmk-module](https://github.com/carrefinho/prospector-zmk-module),
 [ZMK displays](https://zmk.dev/docs/features/displays).
 
-**Verdict: no action** — your display stack already surfaces the layer state that
-doubles as trackball-mode state.
+**Verdict: dongle display only** — the Prospector shows the layer state that
+doubles as trackball-mode state without spending the halves' batteries.
 
 ---
 
